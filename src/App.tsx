@@ -1,28 +1,51 @@
+import { RouterProvider, createBrowserRouter, RouteObject } from "react-router-dom"
 import { ThemeProvider } from "./components/ThemeProvider"
-import { ModeToggle } from "./components/ModeToggle"
-import { getAllProjects } from "./sanity/client"
-import { Project } from "./sanity/sanity-types"
-import { useEffect, useState } from "react"
-
+import Root from "./pages/Root"
+import About from "./pages/About"
+import Home from "./pages/Home"
+import Project from "./pages/Project"
+import Contact from "./pages/Contact"
 
 function App() {
-	const [projects, setProjects] = useState<Project[] | null>(null)
 
-	useEffect(()=>{
-		(async ()=>{
-			const data = await getAllProjects();
-			setProjects(data);
-		})() 
-	},[])
-	projects && console.log(projects)
+	const routerArray = [
+		{
+			path: '/',
+			element: <Root/>,
+			loader: async () => { return null },
+			children: [
+				{
+					element: <Home/>,
+					index: true,
+					loader: async () => { return null },
+				},
+				{
+					path: '/contact',
+					element: <Contact/>,
+					loader: async () => { return null },
+				},
+				{
+					path: '/about',
+					element: <About/>,
+					loader: async () => { return null },
+				},
+				{
+					path: '/project/:p',
+					element: <Project/>,
+					loader: async () => { return null },
+				}
+			]
+		}
+	]
 
+	const router = createBrowserRouter(routerArray as RouteObject[])
+	
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-			<ModeToggle/>
-			{projects && projects.map((project, key)=>
-					<h1 key={key}>{project.name}</h1>
-				) 
-			}
+			<RouterProvider 
+				router={router} 
+				fallbackElement={<div></div>}
+			/>
     </ThemeProvider>
   )
 }
