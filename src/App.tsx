@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter, RouteObject } from "react-router-dom"
-import { ThemeProvider } from "./components/ThemeProvider"
+import Palette from "./pages/Palette"
 import Root from "./pages/Root"
 import About from "./pages/About"
 import Home from "./pages/Home"
@@ -33,6 +33,10 @@ function App() {
 					path: '/project/:p',
 					element: <Project/>,
 					loader: async () => { return null },
+				},
+				{
+					path: '/palette',
+					element: <Palette/>,
 				}
 			]
 		}
@@ -41,12 +45,10 @@ function App() {
 	const router = createBrowserRouter(routerArray as RouteObject[])
 	
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
 			<RouterProvider 
 				router={router} 
 				fallbackElement={<div></div>}
 			/>
-    </ThemeProvider>
   )
 }
 

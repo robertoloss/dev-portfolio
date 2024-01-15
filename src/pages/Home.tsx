@@ -1,4 +1,3 @@
-import { ModeToggle } from "../components/ModeToggle"
 import { getAllProjects } from "../sanity/client"
 import { Project } from "../sanity/sanity-types"
 import { useEffect, useState } from "react"
@@ -16,13 +15,12 @@ export default function Home() {
 	projects && console.log(projects)
 
   return (
-    <>
-			<ModeToggle/>
+    <div className="flex flex-col">
 			{projects && projects.map((project, key)=>
 					<h1 key={key}>{project.name}</h1>
 				) 
 			}
-    </>
+    </div>
   )
 }
 
