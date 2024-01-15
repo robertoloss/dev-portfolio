@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import ThemeToggle from "@/components/ThemeToggle"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import { TbMinusVertical } from "react-icons/tb";
 import { useState } from "react";
 
 type Props = {
@@ -11,8 +10,11 @@ type Props = {
 
 export default function Sidebar({ close, closeHandler } : Props) {
 	const [hover, setHover] = useState(false)
-	function hoverHandler() {
-		setHover(prev => !prev)
+	function hoverHandlerEnter() {
+		setHover(true)
+	}
+	function hoverHandlerLeave() {
+		setHover(false)
 	}
 	const sidebarButtons = [
 		{
@@ -37,6 +39,9 @@ export default function Sidebar({ close, closeHandler } : Props) {
 		},
 	]
 
+	console.log("\nclose: ", close)
+	console.log("hover: ", hover)
+
 	return (
 		<div className={`flex flex-row 
 			w-full h-full`}>
@@ -54,11 +59,15 @@ export default function Sidebar({ close, closeHandler } : Props) {
 						</div>
 					</div>
 				</div>
-			<div className="flex flex-col w-4 h-full justify-center hover:bg-muted cursor-pointer"
-				onClick={closeHandler} onMouseEnter={hoverHandler} onMouseLeave={hoverHandler}>
-				<div className="w-fit self-end cursor-pointer" >
-					{!close && hover && <FaChevronLeft />}
-					{!close && !hover && <TbMinusVertical size="24px" className="-mr-[4px]"/> }
+			<div className="flex flex-col w-4 h-full justify-center hover:bg-muted cursor-pointer "
+				onClick={closeHandler} onMouseEnter={hoverHandlerEnter} onMouseLeave={hoverHandlerLeave}>
+				<div className="w-full cursor-pointer" >
+					{(!close && hover) && <FaChevronLeft />}
+					{(!close && !hover) && 
+						<div className="flex flex-row w-full h-fit max-w-[16px] overflow-hidden justify-center">
+							<div className="h-[16px] rounded-full border w-fit border-foreground " />
+						</div>
+						}
 					{close && <FaChevronRight /> }
 				</div>
 			</div>
