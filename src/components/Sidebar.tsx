@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { sidebarButtons } from "@/utils/sidebar-menu";
 import ThemeToggle from "@/components/ThemeToggle"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { useState } from "react";
@@ -16,28 +17,7 @@ export default function Sidebar({ close, closeHandler } : Props) {
 	function hoverHandlerLeave() {
 		setHover(false)
 	}
-	const sidebarButtons = [
-		{
-			link: '/',
-			label: 'Home',
-		},
-		{
-			link: '/about',
-			label: 'About',
-		},
-		{
-			link: '/contact',
-			label: 'Contact',
-		},
-		{
-			link: '/project/test',
-			label: 'Projects',
-		},
-		{
-			link: '/palette',
-			label: 'Palette',
-		},
-	]
+	
 
 	console.log("\nclose: ", close)
 	console.log("hover: ", hover)

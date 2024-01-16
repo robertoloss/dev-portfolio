@@ -3,7 +3,7 @@
 export default function Palette() {
 
 	return (
-		<div>
+		<div className="flex flex-col">
 			<br/>
     --background <div className="w-20 h-4 mb-2 bg-background"/>
     --foreground <div className="w-20 h-4 mb-2 bg-foreground"/>
