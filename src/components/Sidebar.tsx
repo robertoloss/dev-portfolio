@@ -28,7 +28,8 @@ export default function Sidebar({ close, closeHandler } : Props) {
 							<ThemeToggle />
 							<div className="flex flex-col gap-y-2">
 								{sidebarButtons.map((button,index) => 
-									<Link key={index} to={button.link} className="text-lg">
+									<Link key={index} to={button.link} className="text-lg hover:ml-2 hover:underline 
+									transition-all duration-100 ease-linear">
 										{button.label}
 									</Link>
 								)}
@@ -42,7 +43,7 @@ export default function Sidebar({ close, closeHandler } : Props) {
 					{(!close && hover) && <FaChevronLeft />}
 					{(!close && !hover) && 
 						<div className="flex flex-row w-full h-fit max-w-[16px] overflow-hidden justify-center">
-							<div className="h-[16px] rounded-full border w-fit border-foreground " />
+							<div className="h-[16px] rounded-full border w-fit border-muted" />
 						</div>
 						}
 					{close && <FaChevronRight /> }

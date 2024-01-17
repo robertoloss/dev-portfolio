@@ -27,8 +27,8 @@ export default function Home() {
   return (
     <div className="flex flex-col py-8 pr-6 gap-y-8">
 			<div className="flex flex-col">
-			<h1 className="text-4xl font-thin">Roberto Loss</h1>
-			<h1 className="text-lg">Software Developer</h1>
+				<h1 className="text-4xl font-thin">Roberto Loss</h1>
+				<h1 className="text-lg">Software Developer</h1>
 			</div>
 			<div className="flex flex-row gap-x-2 ">
 				{websiteInfo && websiteInfo.icons!
@@ -51,6 +51,9 @@ export default function Home() {
 			<div className="max-w-[1200px]">
 				{websiteInfo && <PortableText components={components} value={websiteInfo.description!} />}
 			</div>
+			<h1 className="text-2xl mt-10">Recent projects</h1>
+			<h1 className="text-2xl mt-10">Other stuff</h1>
+			<h1 className="text-2xl mt-10">A blast from the past!</h1>
 		</div>
   )
 }
