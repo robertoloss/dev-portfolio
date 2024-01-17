@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import ThemeToggle from "./ThemeToggle";
 import { Link } from "react-router-dom";
 //import { sidebarButtons } from "@/utils/sidebar-menu"
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -41,6 +42,7 @@ export default function Header({ drawer, drawerHandler } : Props) {
 						<IoCloseOutline size='32px'/>
 					</div>
 					<div className="flex flex-col ">
+						<ThemeToggle/>
 						{sidebarButtons.map((button: typeof sidebarButtons[0],index: number) => 
 							<Link key={index} to={button.link} onClick={drawerHandler}>
 								{button.label}

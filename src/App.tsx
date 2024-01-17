@@ -5,6 +5,7 @@ import About from "./pages/About"
 import Home from "./pages/Home"
 import Project from "./pages/Project"
 import Contact from "./pages/Contact"
+import { getWebsiteInfo } from "./sanity/client"
 
 function App() {
 
@@ -17,7 +18,10 @@ function App() {
 				{
 					element: <Home/>,
 					index: true,
-					loader: async () => { return null },
+					loader: async () => { 
+						const info = await getWebsiteInfo()
+						return info[0]
+					},
 				},
 				{
 					path: '/contact',

@@ -17,21 +17,18 @@ export default function Sidebar({ close, closeHandler } : Props) {
 	function hoverHandlerLeave() {
 		setHover(false)
 	}
-	
 
-	console.log("\nclose: ", close)
-	console.log("hover: ", hover)
 
 	return (
 		<div className={`flex flex-row 
 			w-full h-full`}>
 				<div className={`flex flex-col w-full h-full overflow-hidden border-r-[1px]`}>
-					<div className="flex flex-col w-full h-full pl-10 pt-6">
-						<div className="flex flex-col gap-y-4">
+					<div className="flex flex-col w-full h-full pl-10 pt-12">
+						<div className="flex flex-col gap-y-8">
 							<ThemeToggle />
-							<div className="flex flex-col">
+							<div className="flex flex-col gap-y-2">
 								{sidebarButtons.map((button,index) => 
-									<Link key={index} to={button.link}>
+									<Link key={index} to={button.link} className="text-lg">
 										{button.label}
 									</Link>
 								)}
