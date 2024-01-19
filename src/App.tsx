@@ -5,7 +5,7 @@ import About from "./pages/About"
 import Home from "./pages/Home"
 import Project from "./pages/Project"
 import Contact from "./pages/Contact"
-import { getWebsiteInfo } from "./sanity/client"
+import { getWebsiteInfo, getAllProjects } from "./sanity/client"
 
 function App() {
 
@@ -20,7 +20,8 @@ function App() {
 					index: true,
 					loader: async () => { 
 						const info = await getWebsiteInfo()
-						return info[0]
+						const projects = await getAllProjects()
+						return [ info[0], projects ]
 					},
 				},
 				{
