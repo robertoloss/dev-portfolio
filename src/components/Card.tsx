@@ -35,8 +35,8 @@ export default function Card({ project, websiteInfo } : Props) {
 
 	return (
 		<div className="md:grid  flex flex-col self-center md:self-start md:grid-cols-[repeat(auto-fit,minmax(344px,1fr))]
-				gap-x-6 gap-y-20 max-w-[1200px] py-10 pl-10 pr-[80px] w-[calc(100%+80px)] md:mx-0
-				md:w-full justify-between rounded-xl border border-muted bg-muted"
+				gap-x-6 gap-y-20 max-w-[1200px] py-10 pl-10 pr-[80px] w-[calc(100%+64px)] md:mx-0
+				md:w-full justify-between md:rounded-xl border border-muted bg-muted"
 			onMouseEnter={()=>setCardHover(true)}
 			onMouseLeave={()=>setCardHover(false)}
 		>
