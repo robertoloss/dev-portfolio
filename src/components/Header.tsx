@@ -29,6 +29,8 @@ export default function Header({ drawer, drawerHandler } : Props) {
 		else document.body.classList.remove('overflow-hidden')
 	},[drawer])
 
+	console.log("[Header] shadow: ", shadow)
+
 	return (
 			<div className={`flex flex-row p-4 sticky top-0 left-0 w-full h-14  sm:hidden
 				${shadow ? 'border-b border-muted' : ''} bg-background ${drawer ? 'opacity-100' : 'opacity-80'} z-40

@@ -9,7 +9,7 @@ export default function Home() {
 	console.log(projects)
 
   return (
-    <div className="flex flex-col py-8 pr-6 gap-y-8">
+    <div className="flex flex-col w-full py-8 md:pr-6 gap-y-8">
 			<Hero websiteInfo={websiteInfo}/>
 			<h1 className="text-2xl mt-10">Recent projects</h1>
 				{projects.map((project, index) => 

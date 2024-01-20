@@ -1,17 +1,9 @@
 import { Project, Website } from "@/sanity/sanity-types"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
-import { CgWebsite } from "react-icons/cg";
-import { FaGithub } from "react-icons/fa";
-import { PortableTextComponents, PortableText } from "@portabletext/react";
-import { Link } from "react-router-dom";
+import WebAndGit from "./card-components/WebAndGit";
+import Stack from "./card-components/Stack";
+import ImgCarousel from "./card-components/ImgCarousel";
 import { urlFor } from "@/sanity/client";
-import SanitySVG from "./SanitySVG";
-
-const components : PortableTextComponents = {
-	block: {
-		normal: ({ children }) => <h1 className="text-lg font-thin leading-7">{ children }</h1>
-	}
-}
+import NameAndDescription from "./card-components/NameAndDescription";
 
 type Props = {
 	project: Project
@@ -39,53 +31,16 @@ export default function Card({ project, websiteInfo } : Props) {
 	}
 	const urlArray = getTechToDisplay()
 
-	
-
 	return (
-		<div className="max-w-[800px]">
-			<h1 className="text-xl font-semibold">{project.name}</h1>
-			<PortableText components={components} value={project.description!} />
-			<div className="flex flex-row gap-4">
-				<Link className="cursoer-pointer" to={project.website || ''} target="_blank"> 
-					<CgWebsite size={24}/>
-				</Link>
-				<Link to={project.github || ''} className="cursor-ponter" target="_blank"> 
-					<FaGithub size={24}/>
-				</Link>
+		<div className="md:grid  flex flex-col self-center md:self-start md:grid-cols-[repeat(auto-fit,minmax(344px,1fr))]
+			gap-x-6 gap-y-20 max-w-[1200px] py-10 pl-10 pr-[80px] w-[calc(100%+80px)] md:mx-0
+			md:w-full justify-between rounded-xl border border-muted bg-muted">
+			<div className="flex flex-col relative justify-between gap-y-6">
+				<NameAndDescription project={project} />
+				<WebAndGit project={project} />
+				<Stack urlArray={urlArray} stackUrl={stackUrl} />
 			</div>
-			<img src={stackUrl} className="h-6 w-6"/>
-			<div className="flex flex-row">
-				{urlArray && urlArray.map((url: string, index : number) => 
-					{if (index != 4) { 
-						return (
-						<img 
-								src={url}
-								className={`h-8 w-8 p-1  ${index === 2 ? 'dark:bg-gray-800 rounded-full' : '' }`} 
-								key={index}
-							/>
-						)
-					} else return (
-					<div className="h-8 w-8 p-1">
-						<SanitySVG />
-					</div>
-					)
-				}
-				)}
-			</div>
-			<div className="max-w-[400px] max-h-[400px] ml-10">
-				<Carousel>
-					<CarouselPrevious />
-					<CarouselContent>
-						{project.carousel && project.carousel.map((pic,index)=>
-							<CarouselItem>
-								<img className="h-full object-cover" src={urlFor(pic.image)?.width(1200).url()} key={index}/>
-							</CarouselItem>	
-						)}
-					</CarouselContent>
-					<CarouselNext />
-				</Carousel>
-			</div>
-			
+			<ImgCarousel project={project} />
 		</div>
 	)
 }

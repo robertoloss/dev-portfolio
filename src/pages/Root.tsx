@@ -31,9 +31,9 @@ export default function Root() {
 		<>
 			<Header drawer={drawer} drawerHandler={drawerHandler}/>
 			<div className={`flex w-full
-				sm:grid ${!close ? 'sm:grid-cols-[240px_auto]' : 'sm:grid-cols-[16px_auto]'} 
+				md:grid ${!close ? 'sm:grid-cols-[240px_auto]' : 'md:grid-cols-[16px_auto]'} 
 				w-full h-full transition-all duration-500 ease-in-out`}>
-				<div className="w-full h-full col-span-1 hidden sm:block">
+				<div className="w-full h-full col-span-1 hidden md:block">
 					<Sidebar close={close} closeHandler={closeHandler}/>
 				</div>
 				<div className="flex flex-col relative w-full 
