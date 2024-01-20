@@ -8,9 +8,9 @@ export default function Home() {
 	const [ websiteInfo, projects ] = useLoaderData() as [ Website, Project[] ]
 
   return (
-    <div className="flex flex-col w-full py-8 md:pr-6 gap-y-8">
+    <div className="flex flex-col w-full pb-8 md:py-8 md:pr-6 gap-y-8">
 			<Hero websiteInfo={websiteInfo}/>
-			<h1 className="text-2xl mt-10">Recent projects</h1>
+			<h1 className="text-2xl md:mt-10">Recent projects</h1>
 				{projects.map((project, index) => 
 					<Card project={project} websiteInfo={websiteInfo} key={index}/>
 				)}

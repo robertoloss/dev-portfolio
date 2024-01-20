@@ -23,7 +23,7 @@ const components : PortableTextComponents = {
 		bullet: ({children}) => <ul className="text-lg font-thin leading-7">{children}</ul>
 	},
 	listItem: {
-		bullet: ({children}) => <li className="">{children}</li>
+		bullet: ({children}) => <li className="mb-8 md:mb-0">{children}</li>
 	}
 }
 
@@ -33,8 +33,8 @@ type Props = {
 
 export default function Hero({ websiteInfo } : Props) {
 
-	return (<>
-		<div className="flex flex-col">
+	return (<div className="flex flex-col min-h-screen md:min-h-0 gap-y-10">
+			<div className="flex flex-col">
 				<h1 className="text-4xl font-thin">Roberto Loss</h1>
 				<h1 className="text-lg">Software Developer</h1>
 			</div>
@@ -62,5 +62,5 @@ export default function Hero({ websiteInfo } : Props) {
 			<div className="max-w-[1200px]">
 				{websiteInfo && <PortableText components={components} value={websiteInfo.description!} />}
 			</div>
-	</>)
+	</div>)
 }
