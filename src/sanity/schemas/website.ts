@@ -14,7 +14,13 @@ export const website = defineType({
 			type: 'array',
 			of: [defineArrayMember({type: 'block'})],
 			title: 'Description'
-		}),	
+		}),
+		defineField({
+			name: 'about_description',
+			type: 'array',
+			of: [defineArrayMember({type: 'block'})],
+			title: 'About: Description'
+		}),
 		defineField({
 			name: 'icons',
 			type: 'array',

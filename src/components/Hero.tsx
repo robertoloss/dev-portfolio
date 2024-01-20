@@ -19,6 +19,12 @@ const components : PortableTextComponents = {
       )
     },
 	},
+	list: {
+		bullet: ({children}) => <ul className="text-lg font-thin leading-7">{children}</ul>
+	},
+	listItem: {
+		bullet: ({children}) => <li className="">{children}</li>
+	}
 }
 
 type Props = {

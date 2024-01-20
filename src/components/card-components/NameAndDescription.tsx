@@ -9,13 +9,14 @@ const components : PortableTextComponents = {
 
 type Props = {
 	project: Project
+	cardHover: boolean
 }
 
-export default function NameAndDescription({ project } : Props) {
+export default function NameAndDescription({ project, cardHover } : Props) {
 
 	return (
 		<div className="flex flex-col gap-y-2 ">
-			<h1 className="text-xl font-semibold">{project.name}</h1>
+			<h1 className={`text-xl font-semibold ${cardHover ? 'text-[#ef4444]' : ''}`}>{project.name}</h1>
 			<div className="flex flex-col">
 				<PortableText components={components} value={project.description!} />
 			</div>

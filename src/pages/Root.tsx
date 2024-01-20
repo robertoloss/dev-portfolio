@@ -3,42 +3,56 @@ import Header from "@/components/Header";
 //import { useLoaderData } from "react-router-dom";
 //import { urlFor } from "@/sanity/client";
 import Sidebar from "@/components/Sidebar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Root() {
 	const [toggle, setToggle] = useState(false)
 	const [close, setClose] = useState(false)
 	const [drawer, setDrawer] = useState(false)
+	const [shadow, setShadow] = useState(false)	
+	const main = useRef<HTMLDivElement | null>(null)
+
+	let timeoutId : ReturnType<typeof setTimeout>;
+	const scroll = () => {
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(() => {
+			const currentPosition = main.current?.scrollTop
+			if (currentPosition != undefined) {
+				if (currentPosition > 20) setShadow(true)
+				else setShadow(false)
+			}
+		}, 200)
+	}
+
 	function drawerHandler() {
 		setDrawer(prev => !prev)
 	}
 	function closeHandler() {
 		setClose(prev => !prev)
 	}
-
 	useEffect(()=>{
 		const root = window.document.documentElement
     root.classList.remove("light", "dark")
     root.classList.add("dark")
 		setToggle(true)
 	},[])
-
 	if (toggle) null
-
-	//change grid-cols-[240px_auto] for palett page
 
 	return (
 		<>
-			<Header drawer={drawer} drawerHandler={drawerHandler}/>
-			<div className={`flex w-full
+			<Header drawer={drawer} drawerHandler={drawerHandler} shadow={shadow}/>
+			<div className={`flex w-full relative
 				md:grid ${!close ? 'sm:grid-cols-[240px_auto]' : 'md:grid-cols-[16px_auto]'} 
-				w-full h-full transition-all duration-500 ease-in-out`}>
+				w-full h-full transition-all duration-500 ease-in-out `}>
 				<div className="w-full h-full col-span-1 hidden md:block">
 					<Sidebar close={close} closeHandler={closeHandler}/>
 				</div>
-				<div className="flex flex-col relative w-full 
-					h-screen col-span-1 overflow-y-auto px-8"
+				<div
+					ref={main}
+					className="flex flex-col relative w-full h-screen col-span-1 overflow-y-auto px-8"
+					onScroll={scroll}
 				>
+					<div className="flex flex-col  w-full min-h-16 md:min-h-0" />
 					<Outlet/>
 				</div>
 			</div>

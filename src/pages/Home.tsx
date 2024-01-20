@@ -6,7 +6,6 @@ import Hero from "@/components/Hero";
 
 export default function Home() {
 	const [ websiteInfo, projects ] = useLoaderData() as [ Website, Project[] ]
-	console.log(projects)
 
   return (
     <div className="flex flex-col w-full py-8 md:pr-6 gap-y-8">

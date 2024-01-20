@@ -32,7 +32,10 @@ function App() {
 				{
 					path: '/about',
 					element: <About/>,
-					loader: async () => { return null },
+					loader: async () => { 
+						const website = await getWebsiteInfo()
+						return website[0] 
+					},
 				},
 				{
 					path: '/project/:p',

@@ -4,6 +4,7 @@ import Stack from "./card-components/Stack";
 import ImgCarousel from "./card-components/ImgCarousel";
 import { urlFor } from "@/sanity/client";
 import NameAndDescription from "./card-components/NameAndDescription";
+import { useState } from "react";
 
 type Props = {
 	project: Project
@@ -11,6 +12,7 @@ type Props = {
 }
 
 export default function Card({ project, websiteInfo } : Props) {
+	const [cardHover, setCardHover] = useState(false)
 
 	const stackUrl = urlFor(websiteInfo.icons?.filter((icon)=>icon.name!.toLowerCase() === project.stack)[0].image)?.width(24).url()
 
@@ -33,10 +35,13 @@ export default function Card({ project, websiteInfo } : Props) {
 
 	return (
 		<div className="md:grid  flex flex-col self-center md:self-start md:grid-cols-[repeat(auto-fit,minmax(344px,1fr))]
-			gap-x-6 gap-y-20 max-w-[1200px] py-10 pl-10 pr-[80px] w-[calc(100%+80px)] md:mx-0
-			md:w-full justify-between rounded-xl border border-muted bg-muted">
+				gap-x-6 gap-y-20 max-w-[1200px] py-10 pl-10 pr-[80px] w-[calc(100%+80px)] md:mx-0
+				md:w-full justify-between rounded-xl border border-muted bg-muted"
+			onMouseEnter={()=>setCardHover(true)}
+			onMouseLeave={()=>setCardHover(false)}
+		>
 			<div className="flex flex-col relative justify-between gap-y-6">
-				<NameAndDescription project={project} />
+				<NameAndDescription project={project} cardHover={cardHover}/>
 				<WebAndGit project={project} />
 				<Stack urlArray={urlArray} stackUrl={stackUrl} />
 			</div>
