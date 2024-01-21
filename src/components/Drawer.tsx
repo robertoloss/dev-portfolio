@@ -4,14 +4,14 @@ import { sidebarButtons } from "@/utils/sidebar-menu"
 import { IoCloseOutline } from "react-icons/io5"
 
 type Props = {
-	drawerHandler: ()=>void,
+	drawerHandler: (slug: string)=>void,
 }
 
 export default function Drawer({ drawerHandler } : Props) {
-
+	
 	return (
 		<div className="flex flex-col absolute  top-0 left-0 p-4 w-screen h-screen bg-background z-50">
-			<div className="cursor-pointer self-end" onClick={drawerHandler}>
+			<div className="cursor-pointer self-end" onClick={()=>drawerHandler('toggle')}>
 				<IoCloseOutline size='32px'/>
 			</div>
 			<div className="flex flex-col mt-8 ml-14 gap-y-14">
@@ -21,7 +21,7 @@ export default function Drawer({ drawerHandler } : Props) {
 						<Link
 							className="text-2xl w-fit hover:text-[#ef4444] transition-[color] duration-500"
 							key={index} to={button.link} 
-							onClick={drawerHandler}
+							onClick={()=>drawerHandler(button.link)}
 						>
 							{button.label}
 						</Link>

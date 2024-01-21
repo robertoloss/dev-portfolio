@@ -4,7 +4,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 type Props = {
 	drawer: boolean,
-	drawerHandler: ()=>void,
+	drawerHandler: (s: string)=>void,
 	shadow: boolean
 }
 
@@ -18,7 +18,7 @@ export default function Header({ drawer, drawerHandler, shadow } : Props) {
 	return (
 			<div className={`flex flex-row p-4 fixed top-0 left-0 w-full h-16  md:hidden
 				${shadow ? 'border-b border-muted' : ''} bg-background/80 z-40 justify-end`}>
-				<div className="cursor-pointer" onClick={drawerHandler}>
+				<div className="cursor-pointer" onClick={()=>drawerHandler('toggle')}>
 					<RxHamburgerMenu size="32px"/>
 				</div>
 				{drawer && <Drawer drawerHandler={drawerHandler}/>}

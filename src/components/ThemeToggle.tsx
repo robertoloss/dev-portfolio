@@ -1,6 +1,6 @@
 import { Switch } from "./ui/switch"
-import { useTheme } from "@/utils/store"
 import { useState } from "react"
+import { useTheme } from "@/utils/useTheme"
 
 
 export default function ThemeToggle() {

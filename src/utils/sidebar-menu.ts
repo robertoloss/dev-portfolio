@@ -1,22 +1,22 @@
 export const sidebarButtons = [
 		{
-			link: '/',
+			link: '',
 			label: 'Home',
 		},
 		{
-			link: '/about',
+			link: 'about',
 			label: 'About',
 		},
 		{
-			link: '/contact',
+			link: 'contact',
 			label: 'Contact',
 		},
 		{
-			link: '/project/test',
+			link: 'project/test',
 			label: 'Projects',
 		},
 		{
-			link: '/palette',
+			link: 'palette',
 			label: 'Palette',
 		},
 	]

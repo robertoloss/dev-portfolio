@@ -1,6 +1,9 @@
 import { PortableText, PortableTextComponents } from "@portabletext/react"
+import { useEffect } from "react"
+import AnimationWrapper from "@/components/AnimationWrapper"
 import { Website } from "@/sanity/sanity-types"
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useLocation } from "react-router-dom"
+import { usePage } from "@/utils/usePage"
 
 const components : PortableTextComponents = {
   block: {
@@ -22,10 +25,23 @@ const components : PortableTextComponents = {
 
 export default function About() {
 	const website = useLoaderData() as Website
-	return (
-		<>
-			<h1>About</h1>
-			<PortableText components={components} value={website.about_description!}/>
-		</>
+	const { pageOpen, setPageOpen, mobile } = usePage()
+	const location = useLocation()
+	
+	useEffect(()=>{
+		setPageOpen(true)
+	},[setPageOpen,location])
+
+  return (
+		<div className="min-h-screen">
+			<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
+				<div className="flex flex-col w-full pb-8 md:py-8 md:pr-6 gap-y-8">
+					<div className="flex flex-col w-full max-w-[1000px] gap-y-4">
+						<h1 className="text-4xl font-thin"> About me </h1>
+						<PortableText components={components} value={website.about_description!}/>
+					</div>
+				</div>
+			</AnimationWrapper>
+		</div>
 	)
 }

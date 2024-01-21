@@ -1,9 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "@/components/Header";
 //import { useLoaderData } from "react-router-dom";
 //import { urlFor } from "@/sanity/client";
 import Sidebar from "@/components/Sidebar";
 import { useState, useEffect, useRef } from "react";
+import { usePage } from "@/utils/usePage";
 
 export default function Root() {
 	const [toggle, setToggle] = useState(false)
@@ -11,6 +12,9 @@ export default function Root() {
 	const [drawer, setDrawer] = useState(false)
 	const [shadow, setShadow] = useState(false)	
 	const main = useRef<HTMLDivElement | null>(null)
+	const { setPageOpen, setMobile } = usePage();
+
+	const location = useLocation().pathname.split('/').slice(-1)[0]
 
 	let timeoutId : ReturnType<typeof setTimeout>;
 	const scroll = () => {
@@ -24,7 +28,11 @@ export default function Root() {
 		}, 200)
 	}
 
-	function drawerHandler() {
+	function drawerHandler(slug: string) {
+		if (slug != 'toggle') {
+			setPageOpen(false,slug,location)
+			setMobile(true)
+		}
 		setDrawer(prev => !prev)
 	}
 	function closeHandler() {

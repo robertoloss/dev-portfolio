@@ -33,7 +33,8 @@ type Props = {
 
 export default function Hero({ websiteInfo } : Props) {
 
-	return (<div className="flex flex-col min-h-screen md:min-h-0 gap-y-10">
+	return (
+		<div className="flex flex-col min-h-screen md:min-h-0 gap-y-10">
 			<div className="flex flex-col">
 				<h1 className="text-4xl font-thin">Roberto Loss</h1>
 				<h1 className="text-lg">Software Developer</h1>
@@ -62,5 +63,6 @@ export default function Hero({ websiteInfo } : Props) {
 			<div className="max-w-[1200px]">
 				{websiteInfo && <PortableText components={components} value={websiteInfo.description!} />}
 			</div>
-	</div>)
+		</div>
+	)
 }
