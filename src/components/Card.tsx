@@ -17,14 +17,14 @@ export default function Card({ project, websiteInfo } : Props) {
 	const stackUrl = urlFor(websiteInfo.icons?.filter((icon)=>icon.name!.toLowerCase() === project.stack)[0].image)?.width(24).url()
 
 	function getTechToDisplay() {
-		const tech = project.tech!.map((t)=> {
+		const tech = project.tech?.map((t)=> {
 			if (t.includes('-')) {
 				const arr = t.split('-')
 				const res = arr[0]+' '+arr[1]
 				return res
 			} else return t
 		})
-		const urlArray = tech.map((t) => {
+		const urlArray = tech?.map((t) => {
 			const icon = websiteInfo.icons!.filter(i=>i.name?.toLowerCase() === t)[0]
 			const res = urlFor(icon.image)!.width(24).url()
 			return res 

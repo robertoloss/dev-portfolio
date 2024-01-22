@@ -9,9 +9,16 @@
 	background: blue;
 }
 
+@font-face {
+  font-family: "Hack";
+  src: url(../font/Hack/HackNerdFontMono-Regular.ttf) format("truetype");
+}
+
 body {
 	overscroll-behavior: none;
-	font-family: "Fira Code", monospace;
+	/* font-family: "Hack"; */
+	font-family: "Fira Code", monospace;  
+	 /* font-family: "Inter", sans-serif; */
 }
 
 @layer base {

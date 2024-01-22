@@ -9,7 +9,7 @@ const components : PortableTextComponents = {
     normal: ({children}) => <h1 className="text-lg font-thin leading-7">{children}</h1>,
   },
 	marks: {
-    em: ({children}) => <p className="text-lg font-normal text-destructive leading-6">{children}</p>,
+    em: ({children}) => <p className="text-lg font-thin text-destructive leading-6">{children}</p>,
 		link: ({value, children}) => {
       const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
       return (
@@ -20,7 +20,7 @@ const components : PortableTextComponents = {
     },
 	},
 	list: {
-		bullet: ({children}) => <ul className="text-lg font-thin leading-7">{children}</ul>
+		bullet: ({children}) => <ul className="text-lg font-extralight leading-7">{children}</ul>
 	},
 	listItem: {
 		bullet: ({children}) => <li className="mb-8 md:mb-0">{children}</li>
@@ -36,8 +36,11 @@ export default function Hero({ websiteInfo } : Props) {
 	return (
 		<div className="flex flex-col min-h-screen md:min-h-0 gap-y-10">
 			<div className="flex flex-col">
-				<h1 className="text-4xl font-thin">Roberto Loss</h1>
-				<h1 className="text-lg">Software Developer</h1>
+				<h1 
+					className="text-4xl font-thin"
+					style={{fontFamily: "Fira Code"}}
+				>Roberto Loss</h1>
+				<h1 className="text-lg" style={{fontFamily: "Fira Code"}}>Software Developer</h1>
 			</div>
 			<div className="flex flex-row gap-x-2 group">
 				{websiteInfo && websiteInfo.icons!

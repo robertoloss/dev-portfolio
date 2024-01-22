@@ -1,7 +1,7 @@
 import SanitySVG from "../SanitySVG"
 
 type Props = {
-	urlArray: string[],
+	urlArray: string[] | undefined,
 	stackUrl: string | undefined,
 }
 
@@ -11,7 +11,7 @@ export default function Stack({ urlArray, stackUrl } : Props) {
 	return (
 		<div className="flex flex-row items-center">
 			<img src={stackUrl} className="h-6 w-6"/>
-			<div className="flex flex-row">
+			{urlArray && <div className="flex flex-row">
 				{urlArray && urlArray.map((url: string, index : number) => 
 					{if (index != 4) { 
 						return (
@@ -28,7 +28,7 @@ export default function Stack({ urlArray, stackUrl } : Props) {
 						)
 					}
 				)}
-			</div>
+			</div>}
 		</div>
 	)
 }

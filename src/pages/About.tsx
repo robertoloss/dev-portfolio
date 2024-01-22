@@ -7,7 +7,7 @@ import { usePage } from "@/utils/usePage"
 
 const components : PortableTextComponents = {
   block: {
-    normal: ({children}) => <h1 className="text-lg font-thin leading-7">{children}</h1>,
+    normal: ({children}) => <h1 className="text-lg font-extralight leading-7">{children}</h1>,
   },
 	marks: {
     em: ({children}) => <p className="text-lg font-normal text-destructive leading-6">{children}</p>,
@@ -37,7 +37,8 @@ export default function About() {
 			<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
 				<div className="flex flex-col w-full pb-8 md:py-8 md:pr-6 gap-y-8">
 					<div className="flex flex-col w-full max-w-[1000px] gap-y-4">
-						<h1 className="text-4xl font-thin"> About me </h1>
+						<h1 className="text-4xl font-thin"
+								style={{fontFamily: "Fira Code"}}> About me </h1>
 						<PortableText components={components} value={website.about_description!}/>
 					</div>
 				</div>
