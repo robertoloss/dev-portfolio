@@ -5,9 +5,10 @@ import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { useState, useEffect, useRef } from "react";
 import { usePage } from "@/utils/usePage";
+import useMediaQuery from "@/utils/useMediaQuery";
 
 export default function Root() {
-	const [toggle, setToggle] = useState(false)
+	const [ , setToggle] = useState(false)
 	const [close, setClose] = useState(false)
 	const [drawer, setDrawer] = useState(false)
 	const [shadow, setShadow] = useState(false)	
@@ -38,13 +39,17 @@ export default function Root() {
 	function closeHandler() {
 		setClose(prev => !prev)
 	}
+	const screenWidth = useMediaQuery()
 	useEffect(()=>{
 		const root = window.document.documentElement
     root.classList.remove("light", "dark")
     root.classList.add("dark")
 		setToggle(true)
-	},[])
-	if (toggle) null
+		if (screenWidth < 768) {
+			setMobile(true)
+		}
+	},[setMobile, screenWidth])
+	
 
 	return (
 		<>

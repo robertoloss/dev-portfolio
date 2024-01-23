@@ -11,12 +11,12 @@ export const sidebarButtons = [
 			link: 'contact',
 			label: 'Contact',
 		},
-		{
-			link: 'project/test',
-			label: 'Projects',
-		},
-		{
-			link: 'palette',
-			label: 'Palette',
-		},
+		//{
+		//	link: 'project/test',
+		//	label: 'Projects',
+		//},
+		//{
+		//	link: 'palette',
+		//	label: 'Palette',
+		//},
 	]

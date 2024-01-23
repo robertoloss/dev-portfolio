@@ -1,23 +1,39 @@
 import SanitySVG from "../SanitySVG"
+import { urlFor } from "@/sanity/client"
+import { Project, Website } from "@/sanity/sanity-types"
+
 
 type Props = {
-	urlArray: string[] | undefined,
-	stackUrl: string | undefined,
+	project: Project
+	websiteInfo: Website
 }
+type Icon = NonNullable<Website['icons']>[number]
 
 
-export default function Stack({ urlArray, stackUrl } : Props) {
+export default function Stack({ project, websiteInfo } : Props) {
+	const stack = project.stack
+	const stackIcon = [ ...websiteInfo.icons!
+		.filter((icon)=>icon.name === stack)]
+	const stackUrl = urlFor(stackIcon[0].image)?.width(32).url()
+	const iconArr = project.tech ? [...project.tech] : ['']
+
 
 	return (
-		<div className="flex flex-row items-center">
-			<img src={stackUrl} className="h-6 w-6"/>
-			{urlArray && <div className="flex flex-row">
-				{urlArray && urlArray.map((url: string, index : number) => 
-					{if (index != 4) { 
+		<div className="flex flex-row items-center gap-x-2">
+			<div className={`flex flex-col items-center justify-center
+				${stackIcon[0].name === 'bubble' ? 'h-9 w-9 dark:bg-white rounded-full p-1' : ''}`}>
+				<img src={stackUrl} className={`h-6 w-6 
+					${stackIcon[0].name === 'bubble' ? 'h-5 w-5' : ''}`}
+				/>
+			</div>
+			{<div className="flex flex-row gap-x-2">
+				{websiteInfo.icons && websiteInfo.icons!.filter(icon=>iconArr.includes(icon.name!)).map((icon: Icon, index : number) => 
+					{
+						if (icon.name != 'sanity') { 
 						return (
 						<img 
-								src={url}
-								className={`h-8 w-8 p-1  ${index === 2 ? 'dark:bg-gray-800 rounded-full' : '' }`} 
+								src={urlFor(icon.image!)!.width(32).url()}
+								className={`h-8 w-8 p-1  ${icon.name?.includes('router') ? 'dark:bg-gray-700 rounded-full' : '' }`} 
 								key={index}
 							/>
 						)

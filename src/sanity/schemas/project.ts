@@ -9,6 +9,11 @@ export const project = defineType({
   type: 'document',
 	title: 'Projects',
   fields: [	
+		defineField({
+			name: 'order',
+			type: 'number',
+			title: 'Order'
+		}),
     defineField({
       name: 'name',
       type: 'string',
@@ -55,6 +60,20 @@ export const project = defineType({
 					{ title: 'Tailwind', value: 'tailwind' },
 					{ title: 'React Router', value: 'react-router'},
 					{ title: 'Typescript', value: 'typescript' },
+				]
+			}
+		}),
+		defineField({
+			name: 'section',
+			title: 'Section',
+			type: 'string',
+			description: 'The section in the home page',
+			options: {
+				layout: 'radio',
+				list: [
+					{ title: 'Recent Projects', value: 'recent'},
+					{ title: 'Other Stuff', value: 'other'},
+					{ title: 'Past', value: 'past'},
 				]
 			}
 		}),
