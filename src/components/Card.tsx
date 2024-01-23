@@ -14,7 +14,8 @@ type Props = {
 export default function Card({ project, websiteInfo } : Props) {
 	const [cardHover, setCardHover] = useState(false)
 	const { ref, inView } = useInView({
-		triggerOnce: true
+		triggerOnce: true,
+		threshold: 0.2
 	})
 
 	
