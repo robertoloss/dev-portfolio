@@ -19,8 +19,9 @@ export default function Card({ project, websiteInfo } : Props) {
 
 	
 	return (
-		<div className={`relative ${inView ? 'opacity-1 left-0' : 'opacity-0 left-20'} transition-all duration-1000`}>
-
+		<div className="overflow-hidden -ml-8 -mr-8 md:overflow-visible md:ml-0 md:mr-0">
+		<div className={`relative ${inView ? 'opacity-1 -left-8 md:left-0' : 'opacity-0 left-20'} 
+			transition-all duration-1000`}>
 		<div
 			className={`
 				md:grid flex flex-col self-center md:self-start 
@@ -33,7 +34,7 @@ export default function Card({ project, websiteInfo } : Props) {
 			onMouseLeave={()=>setCardHover(false)}
 			ref={ref}
 		>
-			<div className="flex flex-col relative justify-between gap-y-6 ">
+			<div className="flex flex-col relative justify-between gap-y-6 px-6 md:px-0">
 				<div className="flex flex-col gap-y-4">
 					<NameAndDescription project={project} cardHover={cardHover}/>
 					<WebAndGit project={project} />
@@ -41,6 +42,7 @@ export default function Card({ project, websiteInfo } : Props) {
 				<Stack project={project} websiteInfo={websiteInfo} />
 			</div>
 			<ImgCarousel project={project} />
+		</div>
 		</div>
 		</div>
 		)
