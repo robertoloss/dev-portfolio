@@ -7,9 +7,10 @@ type Props = {
 }
 
 export default function ImgCarousel({ project } : Props) {
+	//console.log(urlFor(project.carousel[0].image)?.width(1200).url())
 
 	return (
-		<div className="flex flex-col max-h-[320px] justify-center relative ml-10 border border-muted ">
+		<div className="flex flex-col max-h-[320px] justify-center relative md:ml-10  ml-4 w-full">
 			<Carousel opts={{
 				align: "start",
 				loop: true,
@@ -18,7 +19,13 @@ export default function ImgCarousel({ project } : Props) {
 				<CarouselContent >
 					{project.carousel && project.carousel.map((pic,index)=>
 						<CarouselItem className="flex flex-col justify-center items-center" key={index}>
-							<img className="h-full max-h-[240px] object-contain" src={urlFor(pic.image)?.width(1200).url()} key={index}/>
+							<div className="w-full h-full max-w-[400px] max-h-[240px]">
+								<img 
+									className="h-full w-full object-cover rounded-lg"
+									src={urlFor(pic.image)?.width(1200).url()} 
+									key={index}
+								/>
+							</div>
 						</CarouselItem>	
 					)}
 				</CarouselContent>

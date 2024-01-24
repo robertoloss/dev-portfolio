@@ -21,13 +21,16 @@ export default function Stack({ project, websiteInfo } : Props) {
 	return (
 		<div className="flex flex-row items-center gap-x-2">
 			<div className={`flex flex-col items-center justify-center
-				${stackIcon[0].name === 'bubble' ? 'h-9 w-9 dark:bg-white rounded-full p-1' : ''}`}>
-				<img src={stackUrl} className={`h-6 w-6 
-					${stackIcon[0].name === 'bubble' ? 'h-5 w-5' : ''}`}
+				${stackIcon[0].name === 'bubble' ? 'h-8 w-8 dark:bg-white rounded-full p-1' : ''}`}>
+				<img src={stackUrl} className={`h-5 w-5 
+					${stackIcon[0].name === 'bubble' ? 'h-4 w-4' : ''}`}
 				/>
 			</div>
 			{<div className="flex flex-row gap-x-2">
-				{websiteInfo.icons && websiteInfo.icons!.filter(icon=>iconArr.includes(icon.name!)).map((icon: Icon, index : number) => 
+				{websiteInfo.icons && 
+					websiteInfo.icons!
+					.filter(icon=>iconArr.includes(icon.name!))
+					.map((icon: Icon, index : number) => 
 					{
 						if (icon.name != 'sanity') { 
 						return (

@@ -1,4 +1,5 @@
 import { Website } from "@/sanity/sanity-types"
+import LinkedInGithub from "./card-components/LinkedInGitHub"
 import { urlFor } from "@/sanity/client"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import { Link } from "react-router-dom"
@@ -36,31 +37,34 @@ export default function Hero({ websiteInfo } : Props) {
 	return (
 		<div className="flex flex-col min-h-screen md:min-h-0 gap-y-10">
 			<div className="flex flex-col">
-				<h1 
-					className="text-4xl font-thin"
-					style={{fontFamily: "Fira Code"}}
-				>Roberto Loss</h1>
-				<h1 className="text-lg" style={{fontFamily: "Fira Code"}}>Software Developer</h1>
+				<h1 className="text-4xl font-thin" style={{fontFamily: "Fira Code"}}>
+					Roberto Loss
+				</h1>
+				<h1 className="text-lg" style={{fontFamily: "Fira Code"}}>
+					Software Developer
+				</h1>
+				<LinkedInGithub />
 			</div>
 			<div className="flex flex-row gap-x-1 md:gap-x-2 group -ml-2 :md:ml-0">
 				{websiteInfo && websiteInfo.icons!
-				.filter(i=>(i.name!='rust' && i.name!='python')).map((icon, index) => 
+				.filter(i=>(i.name!='rust' && i.name!='python'))
+				.map((icon, index) => 
 					<div className="flex relative group/inner" key={index}>
 						<Link to={icon.url!} target="_blank" className="z-20">
-							<div className={`sm:w-10 sm:h-10  w-9 h-9 p-2 rounded-full group-hover/inner:-mt-[8px] z-10 bg-background
+							<div className={`sm:w-9 sm:h-9  w-9 h-9 p-2 rounded-full group-hover/inner:-mt-[4px] z-10 bg-background
 								transition-[margin] duration-100 ease-linear cursor-pointer 
 								${(icon.name === 'rust' || icon.name === 'react-router') ? 
 								' dark:bg-gray-800' : ''}
-								${icon.name == 'bubble' ? 'dark:bg-[#fffffe]' : ''}
+								${icon.name == 'bubble' ? 'dark:bg-gray-600' : ''}
 								`}
 								>
 									{icon.name?.toLowerCase() != 'sanity' && 
-										<img alt={icon.alt!} src={urlFor(icon.image!)!.width(40).url()} />}
+										<img alt={icon.alt!} src={urlFor(icon.image!)!.width(32).url()} />}
 									{icon.name?.toLowerCase() === 'sanity' && <SanitySVG />}
 							</div>
 						</Link>
-					<div className={`flex sm:block sm:w-[38px] sm:h-[38px] absolute top-[1px] left-[1px] 
-						rounded-full bg-background ${icon.name === 'bubble'? 'group-hover:bg-muted-foreground' : 'group-hover:bg-foreground'}`}/>
+					<div className={`flex sm:block sm:w-[34px] sm:h-[34px] absolute top-[1px] left-[1px] 
+						rounded-full bg-background group-hover:bg-foreground`}/>
 					</div>
 				)}
 				{<p className="flex-row h-fit self-end text-muted-foreground"></p>}
