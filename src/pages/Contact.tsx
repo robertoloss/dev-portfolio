@@ -86,10 +86,10 @@ export default function Contact() {
 				sm:py-8 sm:gap-y-10 min-h-[calc(100vh-290px)]'>
 				<h1 className="text-4xl font-thin"
 								style={{fontFamily: "Fira Code"}}> Contact </h1>
-				<p className='w-full max-w-[400px] text-center md:text-left text-lg'>
+				<p className='w-full max-w-[640px] text-center md:text-left text-lg'>
 					If you'd like to get in touch, please send a quick message along with your name and email address
 				</p>
-					<div className='flex flex-col w-full max-w-[400px]'>
+					<div className='flex flex-col w-full max-w-[640px]'>
 						<form 
 							ref={form} 
 							onSubmit={(e)=>e.preventDefault()} 

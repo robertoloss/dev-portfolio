@@ -16,7 +16,7 @@ export default function WGIcon({ type, link } : Props) {
 			className="cursor-pointer"
 			to={link || ''}
 			target="_blank"
-			onMouseEnter={()=>setHover('#ef4444')}
+			onMouseEnter={()=>setHover('#c2af1d')}
 			onMouseLeave={()=>setHover('')}
 		> 
 			{type === 'web' && <CgWebsite size={40} color={hover} />}

@@ -4,7 +4,7 @@ import linkedin from '../../../public/LinkedIn_icon.svg'
 
 
 export default function LinkedInGithub() {
-	const css = 'flex flex-col relative w-8 h-8 hover:scale-110 transition-all duration-200'
+	const css = 'flex flex-col relative w-8 h-8 hover:scale-110 transition-[transform] duration-300'
 	const links = [
 		{
 			name: 'LinkedIn',
@@ -19,7 +19,7 @@ export default function LinkedInGithub() {
 	]
 
 	return (
-		<div className="flex  mt-2 flex-row gap-x-4 ">
+		<div className="flex  mt-2 flex-row gap-x-4">
 			{links.map((link, index)=>
 				<Link key={index} to={link.link} target="_blank">
 					{ link.component }

@@ -35,3 +35,9 @@ export async function getProject(slug:string) {
 		`*[_type == "project" && slug == "${slug}"]`
 	)
 }
+
+export async function getCV() {
+	return await client.fetch(
+		`*[_type == "cv"] `
+	)
+}

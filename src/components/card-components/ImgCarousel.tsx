@@ -10,12 +10,12 @@ export default function ImgCarousel({ project } : Props) {
 	//console.log(urlFor(project.carousel[0].image)?.width(1200).url())
 
 	return (
-		<div className="flex flex-col max-h-[320px] justify-center relative md:ml-10  ml-4 w-full">
+		<div className="flex flex-col max-h-[320px] justify-center relative ml-6 w-full">
 			<Carousel opts={{
 				align: "start",
 				loop: true,
 			}}>
-				<CarouselPrevious />
+				<CarouselPrevious className=""/>
 				<CarouselContent >
 					{project.carousel && project.carousel.map((pic,index)=>
 						<CarouselItem className="flex flex-col justify-center items-center" key={index}>

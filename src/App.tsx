@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import Project from "./pages/Project"
 import Contact from "./pages/Contact"
 import { getWebsiteInfo, getAllProjects } from "./sanity/client"
+import { getCV } from "./sanity/client"
 
 function App() {
 
@@ -34,7 +35,8 @@ function App() {
 					element: <About/>,
 					loader: async () => { 
 						const website = await getWebsiteInfo()
-						return website[0] 
+						const cv = await getCV()
+						return [website[0],cv[0]] 
 					},
 				},
 				{
