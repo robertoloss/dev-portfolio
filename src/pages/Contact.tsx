@@ -57,9 +57,9 @@ export default function Contact() {
 	}
 
 	function labelClassName(input: "name" | "email" | "message") : string {
-		const common = ' flex absolute top-[10px] z-10 ml-2 font-normal transition-all ease-out duration-100 '
-		const onFocus = ' top-[4px] left-[2px] dark:text-muted-foreground light:text-foreground text-xs ' 
-		const onBlur = ' text-muted-foreground'
+		const common = ' flex absolute top-[14px] z-10 ml-[14px] font-normal transition-all ease-out duration-100 dark:text-muted-foreground '
+		const onFocus = ' top-[3px] left-[4px] dark:text-muted-foreground light:text-foreground text-xs ' 
+		const onBlur = 'text-muted-foreground mt-2'
 		const specific = {
 			name: nameFocus || nameInputRef.current?.value  ? onFocus : onBlur, 
 			email: emailFocus || emailInputRef.current?.value  ? onFocus : onBlur,
@@ -69,10 +69,10 @@ export default function Contact() {
 	}
 
 	function inputClassName(input: "nameOrEmail" | "message") : string {
-		const common = `flex px-2 pt-4 rounded-sm border-2 border-border dark:bg-muted
+		const common = `flex flex-col items-center p-4 rounded-sm border-2 border-border dark:bg-muted
 				focus:outline-none focus:ring-0 focus:border-primary  focus:border-2 dark:text-primary`
 		const specific = {
-			nameOrEmail: ' h-11',
+			nameOrEmail: ' h-13 ',
 			message:  ' h-20 ',
 		}
 		return specific[input] + common
@@ -144,8 +144,12 @@ export default function Contact() {
 								/>
 							</div>
 						<div className='h-12 flex flex-col items-center justify-center'>
-							{(showReCaptcha && !submitted) && <h1> Click on the reCAPTCHA to send the email </h1>}
-							{submitted && <h1 className='py-1 px-2  font-semibold'>Email Sent!</h1>}
+							{(showReCaptcha && !submitted) && 
+								<h1 className='text-foreground'>
+									Click on the reCAPTCHA to send the email 
+								</h1>
+							}
+							{submitted && <h1 className='py-1 px-2  font-semibold dark:text-foreground'>Email Sent!</h1>}
 							{!showReCaptcha && 
 								<button
 									className='py-1 px-2 dark:bg-muted hover:dark:bg-muted-foreground bg-muted-foreground
@@ -158,7 +162,7 @@ export default function Contact() {
 								</button>
 							}
 						</div>
-						{showReCaptcha && 
+						{(showReCaptcha && !submitted) &&
 							<div className='flex flex-col self-center'>
 								<div className='flex w-[300px] h-[74px] bg-gray-100 border rounded-s border-gray-300 animate-pulse'/>
 								<ReCAPTCHA 
