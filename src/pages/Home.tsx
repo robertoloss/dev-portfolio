@@ -26,23 +26,29 @@ export default function Home() {
 		},
 		{
 			title: 'Other Stuff',
-			name: 'other'
+			name: 'other',
+			description: 'Side projects, studies, and experiments...'
 		},
 		{
 			title: 'A Blast from the Past',
-			name: 'past'
+			name: 'past',
+			description: `First, there was 'print("Hello World")'. Then, a long series of Leetcodes. Finally, I felt I could venture into coding something just slightly more articulated...`
 		},
 	]
 
   return (
 		<div className="min-h-screen">
 			<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
-				<div className="flex flex-col w-full pb-8 md:py-8 md:pr-6 gap-y-8 ">
+				<div className="flex flex-col  w-full pb-8 md:py-8 md:pr-6 gap-y-8 ">
 					<Hero websiteInfo={websiteInfo}/>
 					{sections.map((section, i)=>
 						<div key={i} className="flex flex-col gap-y-8">
 							{projects.filter(project => project.section! === section.name).length > 0 &&
-								<h1 className="text-2xl md:mt-10">{section.title}</h1>}
+								<div>
+									<h1 className="text-2xl md:mt-10">{section.title}</h1>
+									<h1 className="text-lg text-muted-foreground">{section.description}</h1>
+								</div>
+							}
 							{projects
 								.filter(project => project.section! === section.name)
 								.sort((a,b) => a.order! > b.order! ? 1 : -1)
