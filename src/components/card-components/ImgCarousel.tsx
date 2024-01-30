@@ -22,7 +22,7 @@ export default function ImgCarousel({ project } : Props) {
 							<div className="w-full h-full max-w-[400px] max-h-[240px]">
 								<img 
 									className="h-full w-full object-cover rounded-lg"
-									src={urlFor(pic.image)?.width(1200).url()} 
+									src={urlFor(pic?.image)?.width(1200).url()} 
 									key={index}
 								/>
 							</div>

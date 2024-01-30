@@ -21,9 +21,10 @@ export default function Stack({ project, websiteInfo } : Props) {
 	return (
 		<div className="flex flex-row items-center gap-x-2">
 			<div className={`flex flex-col items-center justify-center
-				${stackIcon[0].name === 'bubble' ? 'h-8 w-8 dark:bg-white rounded-full p-1' : ''}`}>
+				${stackIcon[0].name === 'bubble' ? 'h-8 w-8 dark:bg-white rounded-full p-1' : 
+				( stackIcon[0].name === 'cpp' ? 'h-10 w-10' : '')}`}>
 				<img src={stackUrl} className={`h-5 w-5 
-					${stackIcon[0].name === 'bubble' ? 'h-4 w-4' : ''}`}
+					${stackIcon[0].name === 'bubble' ? 'h-4 w-4' : ( stackIcon[0].name === 'cpp' ? 'h-8 w-8' : '')}`}
 				/>
 			</div>
 			{<div className="flex flex-row gap-x-2">
@@ -32,14 +33,15 @@ export default function Stack({ project, websiteInfo } : Props) {
 					.filter(icon=>iconArr.includes(icon.name!))
 					.map((icon: Icon, index : number) => 
 					{
-						if (icon.name != 'sanity') { 
-						return (
-						<img 
-								src={urlFor(icon.image!)!.width(32).url()}
-								className={`h-8 w-8 p-1  ${icon.name?.includes('router') ? 'dark:bg-gray-700 rounded-full' : '' }`} 
-								key={index}
-							/>
-						)
+						if (icon.name != 'sanity') {
+							const dimensions = icon.name === 'cpp' ? 'h-10 w-10' : 'h-8 w-8'
+							return (
+								<img 
+									src={urlFor(icon?.image)?.width(32).url()}
+									className={`${dimensions}  ${icon.name?.includes('router') ? 'dark:bg-gray-700 rounded-full' : '' }`} 
+									key={index}
+								/>
+							)
 					} else return (
 							<div className="h-8 w-8 p-1" key={index}>
 								<SanitySVG />
