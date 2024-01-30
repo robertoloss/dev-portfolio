@@ -4,7 +4,16 @@ import { PortableTextComponents, PortableText } from "@portabletext/react"
 const components : PortableTextComponents = {
 	block: {
 		normal: ({ children }) => <h1 className="text-lg font-thin leading-7">{ children }</h1>
-	}
+	},
+	marks: {
+    link: ({value, children}) => {
+      return (
+        <a href={value?.href} target='_blank' className="underline">
+          {children}
+        </a>
+      )
+    },
+  },
 }
 
 type Props = {
