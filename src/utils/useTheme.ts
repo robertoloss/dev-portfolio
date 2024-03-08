@@ -11,6 +11,6 @@ export const useTheme = create<UseThemeType>()((set) => ({
 		const root = window.document.documentElement
     root.classList.remove("light", "dark")
     root.classList.add(s)
-		set((state)=>({toggle: !state.toggle}))
+		set({toggle: s === "light" ? false: true})
 	}
 }))

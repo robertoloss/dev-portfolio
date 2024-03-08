@@ -6,14 +6,15 @@ import Sidebar from "@/components/Sidebar";
 import { useState, useEffect, useRef } from "react";
 import { usePage } from "@/utils/usePage";
 import useMediaQuery from "@/utils/useMediaQuery";
+import { useTheme } from "@/utils/useTheme";
 
 export default function Root() {
-	const [ , setToggle] = useState(false)
 	const [close, setClose] = useState(false)
 	const [drawer, setDrawer] = useState(false)
 	const [shadow, setShadow] = useState(false)	
 	const main = useRef<HTMLDivElement | null>(null)
 	const { setPageOpen, setMobile } = usePage();
+	const switchTheme = useTheme((state)=>state.switchTheme)
 
 	const location = useLocation().pathname.split('/').slice(-1)[0]
 
@@ -34,6 +35,7 @@ export default function Root() {
 			setPageOpen(false,slug,location)
 			setMobile(true)
 		}
+		console.log(slug)
 		setDrawer(prev => !prev)
 	}
 	function closeHandler() {
@@ -41,14 +43,14 @@ export default function Root() {
 	}
 	const screenWidth = useMediaQuery()
 	useEffect(()=>{
-		const root = window.document.documentElement
-    root.classList.remove("light", "dark")
-    root.classList.add("dark")
-		setToggle(true)
+		//const root = window.document.documentElement
+    //root.classList.remove("light", "dark")
+    //root.classList.add("dark")
+		switchTheme("dark")
 		if (screenWidth < 768) {
 			setMobile(true)
 		}
-	},[setMobile, screenWidth])
+	},[screenWidth])
 	
 
 	return (
