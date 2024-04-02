@@ -8,7 +8,7 @@ type Props = {
 
 export default function ImgCarousel({ project } : Props) {
 	//console.log(urlFor(project.carousel[0].image)?.width(1200).url())
-	const carousel = project.carousel as []
+	const carousel = project?.carousel! as []
 	
 	return (
 		<div className="flex flex-col max-h-[320px] justify-center relative ml-6 w-full">
