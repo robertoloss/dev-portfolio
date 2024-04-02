@@ -32,7 +32,7 @@ export default function Home() {
 		{
 			title: 'A Blast from the Past',
 			name: 'past',
-			description: `First, there was 'print("Hello World")'. Then, a long series of Leetcodes. Finally, I felt I could venture into coding something just slightly more articulated...`
+			description: `We all have to start from somewhere, right?`
 		},
 	]
 
