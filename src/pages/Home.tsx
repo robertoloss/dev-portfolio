@@ -1,7 +1,7 @@
 import Card from "@/components/Card";
 import { useLoaderData } from "react-router-dom";
-import { Project, Website } from "../sanity/sanity-types";
 import Hero from "@/components/Hero";
+import { Project, Website } from "@/sanity-types";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import AnimationWrapper from "@/components/AnimationWrapper";
@@ -34,8 +34,7 @@ export default function Home() {
 			name: 'past',
 			description: `We all have to start somewhere, right?`
 		},
-	]
-	
+	]	
 
   return (
 		<div className="min-h-screen">

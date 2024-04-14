@@ -1,5 +1,5 @@
-import { Project } from "@/sanity/sanity-types"
 import WGIcon from "./WGIcon"
+import { Project } from "@/sanity-types"
 
 type Props = {
 	project: Project

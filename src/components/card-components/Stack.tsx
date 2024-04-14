@@ -1,6 +1,6 @@
 import SanitySVG from "../SanitySVG"
 import { urlFor } from "@/sanity/client"
-import { Project, Website } from "@/sanity/sanity-types"
+import { Project, Website } from "@/sanity-types"
 
 
 type Props = {

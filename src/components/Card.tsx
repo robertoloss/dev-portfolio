@@ -1,4 +1,5 @@
-import { Project, Website } from "@/sanity/sanity-types"
+//import { Project, Website } from "@/sanity/sanity-types"
+import { Project, Website } from "../sanity-types";
 import WebAndGit from "./card-components/WebAndGit";
 import Stack from "./card-components/Stack";
 import ImgCarousel from "./card-components/ImgCarousel";
@@ -11,8 +12,7 @@ type Props = {
 }
 
 export default function Card({ project, websiteInfo } : Props) {
-	const [cardHover, setCardHover] = useState(false)
-   
+	const [cardHover, setCardHover] = useState(false) 
 	//console.log("Project: ", JSON.stringify(project))
 	return (
 		<div

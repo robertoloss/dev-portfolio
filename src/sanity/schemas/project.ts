@@ -1,37 +1,32 @@
-import { 
-	defineField, 
-	defineArrayMember, 
-	defineType
-} from "@sanity-typed/types";
 
-export const project = defineType({
+export const project = {
   name: 'project',
   type: 'document',
 	title: 'Projects',
   fields: [	
-		defineField({
+		{
 			name: 'order',
 			type: 'number',
 			title: 'Order'
-		}),
-    defineField({
+		},
+    {
       name: 'name',
       type: 'string',
       title: 'Project Name'
-    }),
-		defineField({
+    },
+		{
 			name: 'description',
 			type: 'array',
-			of: [defineArrayMember({type: 'block'})],
+			of: [{type: 'block'}],
 			title: 'Description'
-		}),	
-		defineField({
+		},	
+		{
 			name: 'carousel',
 			type: 'array',
-			of: [defineArrayMember({ type: 'picture'})],
+			of: [{ type: 'picture'}],
 			title: 'Carousel'
-		}),
-		defineField({
+		},
+		{
 			name: 'stack',
 			title: 'Bubble or what?',
 			type: 'string',
@@ -47,12 +42,12 @@ export const project = defineType({
 					{ title: 'Javascript', value: 'javascript' },
 				],
 			}
-		}),
-		defineField({
+		},
+		{
 			name: 'tech',
 			title: 'Tech',
 			type: 'array',
-			of: [defineArrayMember({ type: 'string'})],
+			of: [{ type: 'string'}],
 			description: 'add more stuff (if applicable)',
 			options: {
 				list: [
@@ -62,8 +57,8 @@ export const project = defineType({
 					{ title: 'Typescript', value: 'typescript' },
 				]
 			}
-		}),
-		defineField({
+		},
+		{
 			name: 'section',
 			title: 'Section',
 			type: 'string',
@@ -76,21 +71,21 @@ export const project = defineType({
 					{ title: 'Past', value: 'past'},
 				]
 			}
-		}),
-		defineField({
+		},
+		{
 			name: 'github',
 			type: 'string',
 			title: 'Github'
-		}),
-		defineField({
+		},
+		{
 			name: 'website',
 			type: 'string',
 			title: 'Website'
-		}),
-		defineField({
+		},
+		{
 			name: 'slug',
 			type: 'text',
 			title: 'Slug'
-		}),
+		},
   ]
-})
+}

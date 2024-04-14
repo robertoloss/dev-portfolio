@@ -1,5 +1,5 @@
-import { Website } from "@/sanity/sanity-types"
 import LinkedInGithub from "./card-components/LinkedInGitHub"
+import { Website } from "@/sanity-types"
 import { urlFor } from "@/sanity/client"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import { Link } from "react-router-dom"

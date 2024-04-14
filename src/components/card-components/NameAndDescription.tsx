@@ -1,5 +1,5 @@
-import { Project } from "@/sanity/sanity-types"
 import { PortableTextComponents, PortableText } from "@portabletext/react"
+import { Project } from "@/sanity-types"
 
 const components : PortableTextComponents = {
 	block: {

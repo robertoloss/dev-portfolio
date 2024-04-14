@@ -1,10 +1,9 @@
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import { useEffect } from "react"
 import AnimationWrapper from "@/components/AnimationWrapper"
-import { Website } from "@/sanity/sanity-types"
 import { useLoaderData, useLocation } from "react-router-dom"
 import { usePage } from "@/utils/usePage"
-import { CV } from "@/sanity/sanity-types"
+import { Website, Cv } from "@/sanity-types"
 
 const description : PortableTextComponents = {
   block: {
@@ -41,7 +40,7 @@ const components : PortableTextComponents = {
 
 
 export default function About() {
-	const [ website, cv ] = useLoaderData() as [Website, CV]
+	const [ website, cv ] = useLoaderData() as [Website, Cv]
 	const { pageOpen, setPageOpen, mobile } = usePage()
 	const location = useLocation()
 	
