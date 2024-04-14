@@ -22,7 +22,7 @@ type Props = {
 }
 
 export default function NameAndDescription({ project } : Props) {
-
+	
 	return (
 		<div className="flex flex-col gap-y-2 ">
 			<h1 className={`text-xl font-semibold`}>{project.name}</h1>

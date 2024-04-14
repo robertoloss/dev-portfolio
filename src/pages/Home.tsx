@@ -32,9 +32,10 @@ export default function Home() {
 		{
 			title: 'A Blast from the Past',
 			name: 'past',
-			description: `We all have to start from somewhere, right?`
+			description: `We all have to start somewhere, right?`
 		},
 	]
+	
 
   return (
 		<div className="min-h-screen">

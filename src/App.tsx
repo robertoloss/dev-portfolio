@@ -53,7 +53,7 @@ function App() {
 	]
 
 	const router = createBrowserRouter(routerArray as RouteObject[])
-	
+
   return (
 			<RouterProvider 
 				router={router} 

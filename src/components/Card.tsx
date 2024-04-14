@@ -12,8 +12,8 @@ type Props = {
 
 export default function Card({ project, websiteInfo } : Props) {
 	const [cardHover, setCardHover] = useState(false)
-
-
+   
+	//console.log("Project: ", JSON.stringify(project))
 	return (
 		<div
 			className={`

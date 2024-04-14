@@ -4,6 +4,7 @@ import {
   defineType,
 } from "@sanity-typed/types";
 
+
 export const picture = defineType({
   name: 'picture',
   type: 'document',

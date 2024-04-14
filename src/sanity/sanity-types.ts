@@ -31,3 +31,8 @@ export type Project = SanityValues["project"]
 export type Website = SanityValues["website"]
 export type CV = SanityValues["cv"]
 export type CV_Entry = SanityValues["cvEntry"]
+
+
+
+
+

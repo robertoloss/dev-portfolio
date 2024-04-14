@@ -1,6 +1,6 @@
 import { urlFor } from "@/sanity/client";
 import { CarouselPrevious, CarouselNext, Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import { Project } from "@/sanity/sanity-types";
+import { Project, Picture } from "@/sanity/sanity-types";
 
 type Props = {
 	project: Project
