@@ -152,10 +152,11 @@ export default function Contact() {
 							{submitted && <h1 className='py-1 px-2  font-semibold dark:text-foreground'>Email Sent!</h1>}
 							{!showReCaptcha && 
 								<button
-									className='py-1 px-2 dark:bg-muted hover:dark:bg-muted-foreground bg-muted-foreground
-										hover:bg-muted hover:border-foreground hover:border hover:dark:text-background
-										hover:dark:border-0 transition-[background-color] w-[80px] h-fit
-										self-center rounded-full text-white cursor-pointer hover:text-foreground'
+									className="py-2 px-2  bg-background border-foreground border
+										hover:bg-muted hover:border-foreground hover:border 
+										 transition-[background-color] w-[96px]
+										self-center rounded-[4px] text-foreground font-light cursor-pointer hover:text-foreground
+										"
 									onClick={buttonHandler}
 								>
 									Send 

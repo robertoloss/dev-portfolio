@@ -18,7 +18,6 @@ const components : PortableTextComponents = {
 
 type Props = {
 	project: Project
-	cardHover: boolean
 }
 
 export default function NameAndDescription({ project } : Props) {

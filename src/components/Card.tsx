@@ -4,7 +4,6 @@ import WebAndGit from "./card-components/WebAndGit";
 import Stack from "./card-components/Stack";
 import ImgCarousel from "./card-components/ImgCarousel";
 import NameAndDescription from "./card-components/NameAndDescription";
-import { useState } from "react";
 
 type Props = {
 	project: Project
@@ -12,8 +11,7 @@ type Props = {
 }
 
 export default function Card({ project, websiteInfo } : Props) {
-	const [cardHover, setCardHover] = useState(false) 
-	//console.log("Project: ", JSON.stringify(project))
+
 	return (
 		<div
 			className={`
@@ -23,12 +21,10 @@ export default function Card({ project, websiteInfo } : Props) {
 				md:w-full justify-between md:rounded-xl border border-muted dark:bg-muted bg-border
 				md:hover:scale-[100%] 
 			`}
-			onMouseEnter={()=>setCardHover(true)}
-			onMouseLeave={()=>setCardHover(false)}
 		>
 			<div className="flex flex-col relative justify-between gap-y-6 ">
 				<div className="flex flex-col gap-y-4">
-					<NameAndDescription project={project} cardHover={cardHover}/>
+					<NameAndDescription project={project}/>
 					<WebAndGit project={project} />
 				</div>
 				<Stack project={project} websiteInfo={websiteInfo} />

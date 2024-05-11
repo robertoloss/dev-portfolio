@@ -34,13 +34,14 @@ export default function Home() {
 			name: 'past',
 			description: `We all have to start somewhere, right?`
 		},
-	]	
+	]
 
   return (
 		<div className="min-h-screen">
 			<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
 				<div className="flex flex-col  w-full pb-8 md:py-8 md:pr-6 gap-y-8 ">
 					<Hero websiteInfo={websiteInfo}/>
+					<div> click me </div>
 					{sections.map((section, i)=>
 						<div key={i} className="flex flex-col gap-y-8">
 							{projects.filter(project => project.section! === section.name).length > 0 &&
