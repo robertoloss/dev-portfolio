@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/dialog"
 import { urlFor } from "@/sanity/client"
 import { CarouselPrevious, CarouselNext, Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
-import { useEffect } from "react";
 
 type Props = {
 	children: React.ReactNode
