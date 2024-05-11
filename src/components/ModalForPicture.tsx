@@ -29,7 +29,7 @@ export default function ModalForPicture({ children, carousel, pic } : Props) {
 			<DialogContent 
 				className="
 					flex flex-col flex-1 py-12 px-4 sm:p-12 w-full sm:max-w-[1200px] h-full max-h-[80%] 
-					bg-background border border-muted-foreground justify-center items-center rounded-xl"
+					bg-background border border-muted-foreground justify-center items-center rounded-xl overflow-hidden"
 				>
 				<DialogHeader>
 				</DialogHeader>

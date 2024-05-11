@@ -27,7 +27,7 @@ export default function Home() {
 		{
 			title: 'Other Stuff',
 			name: 'other',
-			description: 'Side projects, studies, and experiments...'
+			description: 'Side projects, studies, experiments...'
 		},
 		{
 			title: 'A Blast from the Past',
