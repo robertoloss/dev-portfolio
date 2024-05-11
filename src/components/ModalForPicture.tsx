@@ -16,14 +16,10 @@ export default function ModalForPicture({ children, carousel, pic } : Props) {
 	const indexOfPic = carousel.indexOf(pic)
 	let i = 0;
 	while (i < indexOfPic) {
-		console.log("hey")
 		const picToMove = carousel.shift()
 		carousel.push(picToMove)
 		i++
 	}
-	//const carouselBefore = carousel.filter((_,i) => i < indexOfPic )
-	//const carouselAfter = carousel.filter((_,i) => i >= indexOfPic )
-	//const sortedCarousel = carouselAfter.concat(carouselBefore)
 
 	return (
 		<Dialog>
@@ -32,8 +28,8 @@ export default function ModalForPicture({ children, carousel, pic } : Props) {
 			</DialogTrigger>
 			<DialogContent 
 				className="
-					flex flex-col flex-1 py-12 px-4 sm:p-12 w-full sm:max-w-[60%] h-fit 
-					bg-background border border-muted-foreground"
+					flex flex-col flex-1 py-12 px-4 sm:p-12 w-full sm:max-w-[1200px] h-full max-h-[80%] 
+					bg-background border border-muted-foreground justify-center items-center rounded-xl"
 				>
 				<DialogHeader>
 				</DialogHeader>
