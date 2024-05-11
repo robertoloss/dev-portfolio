@@ -14,9 +14,16 @@ type Props = {
 }
 export default function ModalForPicture({ children, carousel, pic } : Props) {
 	const indexOfPic = carousel.indexOf(pic)
-	const carouselBefore = carousel.filter((_,i) => i < indexOfPic )
-	const carouselAfter = carousel.filter((_,i) => i >= indexOfPic )
-	const sortedCarousel = carouselAfter.concat(carouselBefore)
+	let i = 0;
+	while (i < indexOfPic) {
+		console.log("hey")
+		const picToMove = carousel.shift()
+		carousel.push(picToMove)
+		i++
+	}
+	//const carouselBefore = carousel.filter((_,i) => i < indexOfPic )
+	//const carouselAfter = carousel.filter((_,i) => i >= indexOfPic )
+	//const sortedCarousel = carouselAfter.concat(carouselBefore)
 
 	return (
 		<Dialog>
@@ -37,7 +44,7 @@ export default function ModalForPicture({ children, carousel, pic } : Props) {
 					<CarouselPrevious className="mx-4 hidden sm:flex sm:flex-col sm:items-center sm:justify-center"/>
 						<div className={`${carousel.length > 0 ? 'bg-none' : 'bg-gray-300 animate-pulse'}`}>
 						<CarouselContent className="">
-							{carousel[carousel.length - 1] && sortedCarousel.map((pic: any, index: number)=>
+							{carousel[carousel.length - 1] && carousel.map((pic: any, index: number)=>
 								<CarouselItem 
 									className="flex flex-col px-6 relative justify-center items-center cursor-pointer" 
 									key={index}
