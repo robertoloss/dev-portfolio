@@ -20,7 +20,9 @@ export default function ImgCarousel({ project } : Props) {
 				<CarouselPrevious className=""/>
 					<div className={`${carousel.length > 0 ? 'bg-none' : 'bg-gray-300 animate-pulse'}`}>
 					<CarouselContent className="">
-						{carousel[carousel.length - 1] && carousel.map((pic: any, index: number)=>
+						{carousel[carousel.length - 1] && carousel
+							.sort((a: any, b:any) => a.name - b.name)
+							.map((pic: any, index: number)=>
 							<CarouselItem 
 								className="flex flex-col p-2 relative  justify-center items-center cursor-pointer" key={index}
 							>
