@@ -29,7 +29,7 @@ export default function ImgCarousel({ project } : Props) {
 								<ModalForPicture carousel={carousel} pic={pic}>
 									<div className="w-full h-full max-w-[400px] max-h-[240px] z-20 transition">
 										<img 
-											className="h-full w-full object-cover"
+											className="h-full w-full object-contain"
 											src={urlFor(pic?.image)?.width(1200).url()} 
 											key={index}
 										/>

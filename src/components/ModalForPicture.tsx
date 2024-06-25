@@ -47,7 +47,7 @@ export default function ModalForPicture({ children, carousel, pic } : Props) {
 								>
 									<div className=" w-full  sm:max-w-[75%] max-h-[320px] sm:max-h-[400px] z-20">
 										<img 
-											className="h-full w-full object-cover"
+											className="h-full w-full object-contain"
 											src={urlFor(pic?.image)?.width(1200).url()} 
 											key={index}
 										/>
