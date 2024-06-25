@@ -6,18 +6,20 @@ import SanitySVG from "./SanitySVG"
 
 type Props = {
 	index: number,
-	icon: Picture
+	icon: Picture,
+	card?: true
 }
-export default function Icon({ icon, index } : Props) {
+export default function Icon({ icon, index, card } : Props) {
 
 	return (
 		<div className="flex relative group/inner" key={index}>
 			<Link to={icon.url!} target="_blank" className="z-20">
-				<div className={`sm:w-9 sm:h-9  w-9 h-9 p-2 rounded-full group-hover/inner:-mt-[4px] z-10 bg-background
+				<div className={`sm:w-9 sm:h-9  w-9 h-9 p-2 rounded-full group-hover/inner:-mt-[4px] z-10 
+					${card ? 'dark:bg-muted bg-border' : 'bg-background'}
 					transition-[margin] duration-100 ease-linear cursor-pointer 
 					${(icon.name === 'rust' || icon.name === 'react-router') ? 
 					' dark:bg-gray-800' : ''}
-					${icon.name == 'bubble' ? 'dark:bg-gray-600' : ''}
+					${icon.name == 'bubble' ? !card ? 'dark:bg-gray-600' : 'dark:bg-gray-400' : ''}
 					`}
 					>
 						{icon.name?.toLowerCase() != 'sanity' && 
@@ -27,7 +29,7 @@ export default function Icon({ icon, index } : Props) {
 			</Link>
 			<div 
 				className={`flex sm:block sm:w-[34px] sm:h-[34px] absolute top-[1px] left-[1px] 
-				rounded-full bg-background group-hover:bg-foreground`}
+				rounded-full bg-foreground group-hover:bg-foreground`}
 			/>
 		</div>
 	)
