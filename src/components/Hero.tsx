@@ -1,9 +1,7 @@
 import LinkedInGithub from "./card-components/LinkedInGitHub"
 import { Website } from "@/sanity-types"
-import { urlFor } from "@/sanity/client"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
-import { Link } from "react-router-dom"
-import SanitySVG from "./SanitySVG"
+import Icon from "./Icon"
 
 const components : PortableTextComponents = {
   block: {
@@ -47,25 +45,9 @@ export default function Hero({ websiteInfo } : Props) {
 			</div>
 			<div className="flex py-2 flex-row gap-x-1 md:gap-x-2 group -ml-2 :md:ml-0 overflow-scroll sm:overflow-auto">
 				{websiteInfo && websiteInfo.icons!
-				.filter(i=>(i.name!='rust' && i.name!='python' && i.name != 'cpp'))
-				.map((icon, index) => 
-					<div className="flex relative group/inner" key={index}>
-						<Link to={icon.url!} target="_blank" className="z-20">
-							<div className={`sm:w-9 sm:h-9  w-9 h-9 p-2 rounded-full group-hover/inner:-mt-[4px] z-10 bg-background
-								transition-[margin] duration-100 ease-linear cursor-pointer 
-								${(icon.name === 'rust' || icon.name === 'react-router') ? 
-								' dark:bg-gray-800' : ''}
-								${icon.name == 'bubble' ? 'dark:bg-gray-600' : ''}
-								`}
-								>
-									{icon.name?.toLowerCase() != 'sanity' && 
-										<img alt={icon.alt!} src={urlFor(icon.image!)!.width(32).url()} />}
-									{icon.name?.toLowerCase() === 'sanity' && <SanitySVG />}
-							</div>
-						</Link>
-					<div className={`flex sm:block sm:w-[34px] sm:h-[34px] absolute top-[1px] left-[1px] 
-						rounded-full bg-background group-hover:bg-foreground`}/>
-					</div>
+					.filter(i=>(i.name!='rust' && i.name!='python' && i.name != 'cpp'))
+					.map((icon, index) => 
+						<Icon icon={icon} index={index} /> 
 				)}
 				{<p className="flex-row h-fit self-end text-muted-foreground"></p>}
 			</div>
