@@ -16,7 +16,7 @@ export default function Icon({ icon, index, card } : Props) {
 			<Link to={icon.url!} target="_blank" className="z-20">
 				<div className={`sm:w-9 sm:h-9  w-9 h-9 p-2 rounded-full group-hover/inner:-mt-[4px] z-10 
 					transition-[margin] duration-100 ease-linear cursor-pointer 
-					${(icon.name === 'rust' || icon.name === 'react-router') ? 
+					${!card && (icon.name === 'rust' || icon.name === 'react-router') ? 
 					' dark:bg-gray-800' : ''}
 					${icon.name == 'bubble' || icon.name == 'rust' ? !card ? 'dark:bg-gray-600' : 'dark:bg-gray-400' : 
 						card ? 'dark:bg-muted bg-border' : 'bg-background'}
