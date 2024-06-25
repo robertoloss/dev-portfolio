@@ -45,7 +45,7 @@ export default function Hero({ websiteInfo } : Props) {
 				</h1>
 				<LinkedInGithub />
 			</div>
-			<div className="flex flex-row gap-x-1 md:gap-x-2 group -ml-2 :md:ml-0 overflow-scroll sm:overflow-auto">
+			<div className="flex py-2 flex-row gap-x-1 md:gap-x-2 group -ml-2 :md:ml-0 overflow-scroll sm:overflow-auto">
 				{websiteInfo && websiteInfo.icons!
 				.filter(i=>(i.name!='rust' && i.name!='python' && i.name != 'cpp'))
 				.map((icon, index) => 
