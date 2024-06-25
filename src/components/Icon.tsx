@@ -19,7 +19,7 @@ export default function Icon({ icon, index, card } : Props) {
 					transition-[margin] duration-100 ease-linear cursor-pointer 
 					${(icon.name === 'rust' || icon.name === 'react-router') ? 
 					' dark:bg-gray-800' : ''}
-					${icon.name == 'bubble' ? !card ? 'dark:bg-gray-600' : 'dark:bg-gray-400' : ''}
+					${icon.name == 'bubble' || icon.name == 'rust' ? !card ? 'dark:bg-gray-600' : 'dark:bg-gray-400' : ''}
 					`}
 					>
 						{icon.name?.toLowerCase() != 'sanity' && 
