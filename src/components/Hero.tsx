@@ -1,5 +1,5 @@
 import LinkedInGithub from "./card-components/LinkedInGitHub"
-import { Picture, Website } from "@/sanity-types"
+import { Website } from "@/sanity-types"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import Icon from "./Icon"
 
