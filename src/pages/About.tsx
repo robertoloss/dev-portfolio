@@ -61,8 +61,8 @@ export default function About() {
 					</div>
 					<ol className="relative border-s border-muted-foreground"> 
 						{cv.cvEntries!
-						.sort((entryA, entryB) => entryA!.order! < entryB!.order! ? 1 : -1)
-						.map((entry, index) => 
+						.sort((entryA: any, entryB: any) => entryA!.order! < entryB!.order! ? 1 : -1)
+						.map((entry: any, index) => 
 							<li key={index} className="mb-10 ms-4 bg-muted px-6 py-4 rounded-xl max-w-[1000px]">
 								<div className="absolute w-3 h-3 rounded-full mt-1.5 -start-[6.5px]
 									border border-white border-muted-foreground bg-muted-foreground"/>
