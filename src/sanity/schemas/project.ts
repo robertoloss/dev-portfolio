@@ -4,20 +4,20 @@ export const project = {
   type: 'document',
 	title: 'Projects',
   fields: [	
-		{
-			name: 'order',
-			type: 'number',
-			title: 'Order'
-		},
     {
       name: 'name',
       type: 'string',
       title: 'Project Name'
     },
 		{
+			name: 'active',
+			type: 'boolean',
+			title: 'Active',
+		},
+		{
 			name: 'description',
 			type: 'array',
-			of: [{type: 'block'}],
+			of: [{ type: 'block' }],
 			title: 'Description'
 		},	
 		{
@@ -25,6 +25,16 @@ export const project = {
 			type: 'array',
 			of: [{ type: 'picture'}],
 			title: 'Carousel'
+		},
+		{
+			name: 'github',
+			type: 'string',
+			title: 'Github'
+		},
+		{
+			name: 'website',
+			type: 'string',
+			title: 'Website'
 		},
 		{
 			name: 'stack',
@@ -52,9 +62,12 @@ export const project = {
 			options: {
 				list: [
 					{ title: 'Vite', value: 'vite' },
+					{ title: 'Next.js', value: 'nextjs' },
 					{ title: 'Tailwind', value: 'tailwind' },
 					{ title: 'React Router', value: 'react-router'},
 					{ title: 'Typescript', value: 'typescript' },
+					{ title: 'Sanity', value: 'sanity' },
+					{ title: 'Supabase', value: 'supabase' },
 				]
 			}
 		},
@@ -73,19 +86,17 @@ export const project = {
 			}
 		},
 		{
-			name: 'github',
-			type: 'string',
-			title: 'Github'
+			name: 'order',
+			type: 'number',
+			title: 'Order'
 		},
 		{
-			name: 'website',
-			type: 'string',
-			title: 'Website'
-		},
-		{
-			name: 'slug',
-			type: 'text',
-			title: 'Slug'
-		},
-  ]
+      name: 'slug',
+      type: 'string',
+      title: 'Slug'
+    },
+  ],
+	initialValue: {
+		active: true
+	}
 }

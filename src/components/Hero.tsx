@@ -1,5 +1,5 @@
 import LinkedInGithub from "./card-components/LinkedInGitHub"
-import { Website } from "@/sanity-types"
+import { Picture, Website } from "@/sanity-types"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import Icon from "./Icon"
 
@@ -29,8 +29,8 @@ const components : PortableTextComponents = {
 type Props = {
 	websiteInfo: Website
 }
-
 export default function Hero({ websiteInfo } : Props) {
+	const icons = websiteInfo?.icons as unknown as Picture[]
 
 	return (
 		<div className="flex flex-col min-h-screen md:min-h-0 gap-y-10">
@@ -44,7 +44,7 @@ export default function Hero({ websiteInfo } : Props) {
 				<LinkedInGithub />
 			</div>
 			<div className="flex py-2 flex-row gap-x-1 md:gap-x-2 group -ml-2 :md:ml-0 overflow-scroll sm:overflow-auto">
-				{websiteInfo && websiteInfo.icons!
+				{websiteInfo && icons
 					.filter(i=>(i.name!='rust' && i.name!='python' && i.name != 'cpp'))
 					.map((icon, index) => 
 						<Icon icon={icon} index={index} /> 

@@ -43,14 +43,14 @@ export default function Home() {
 					<Hero websiteInfo={websiteInfo}/>
 					{sections.map((section, i)=>
 						<div key={i} className="flex flex-col gap-y-8">
-							{projects.filter(project => project.section! === section.name).length > 0 &&
+							{projects.filter(project => project.section! === section.name && project.active).length > 0 &&
 								<div>
 									<h1 className="text-2xl md:mt-10">{section.title}</h1>
 									<h1 className="text-lg text-muted-foreground">{section.description}</h1>
 								</div>
 							}
 							{projects
-								.filter(project => project.section! === section.name)
+								.filter(project => project.section! === section.name && project.active)
 								.sort((a,b) => a.order! > b.order! ? 1 : -1)
 								.map((project, j) => 
 									<Card project={project} websiteInfo={websiteInfo} key={j}/>
