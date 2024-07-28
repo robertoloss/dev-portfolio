@@ -30,7 +30,7 @@ type Props = {
 	websiteInfo: Website
 }
 export default function Hero({ websiteInfo } : Props) {
-	const icons = websiteInfo?.icons as unknown as Picture[]
+	const icons = websiteInfo?.icons as unknown as any[]
 
 	return (
 		<div className="flex flex-col min-h-screen md:min-h-0 gap-y-10">
