@@ -11,6 +11,7 @@ export default function Contact() {
 	const emailInputRef = useRef<HTMLInputElement>(null)
 	const messageInputRef = useRef<HTMLTextAreaElement>(null)
 	const captchaRef = useRef<ReCAPTCHA | null>(null)
+	const [copied, setCopied] = useState(false)
 	const [submitted, setSubmitted] = useState(false)
 	const [nameFocus, setNameFocus] = useState(false)
 	const [emailFocus, setEmailFocus] = useState(false)
@@ -79,6 +80,18 @@ export default function Contact() {
 	}
 
 	window.scrollTo(0,0)
+	async function copyToClipboard() {
+		if (navigator.clipboard && window.isSecureContext) {
+			try {
+				await navigator.clipboard.writeText('robertoloss@gmail.com')
+				console.log('Text copied to clipboard successfully!');
+				setCopied(true)
+				setTimeout(()=>{setCopied(false)}, 2000)
+			} catch(err) {
+				console.error('Failed to copy text to clipboard: ', err);
+			}
+		}
+	}
 
   return (<div className='min-h-screen'>
 		<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
@@ -87,7 +100,20 @@ export default function Contact() {
 				<h1 className="text-4xl font-thin"
 								style={{fontFamily: "Fira Code"}}> Contact </h1>
 				<p className='w-full max-w-[640px] text-center md:text-left text-lg'>
-					If you'd like to get in touch, please send a quick message along with your name and email address
+					If you'd like to get in touch, you can either use the form below or send me an email to&nbsp;
+					<span 
+						className='relative w-full transition-all hover:text-blue-400 text-lg underline text-blue-500 cursor-pointer' 
+						onClick={copyToClipboard}
+					>
+						robertoloss@gmail.com
+						{copied && (
+							<div className="absolute flex flex-row justify-center left-1/2 transform 
+								-translate-x-1/2 mt-1 text-sm text-green-500 w-full"
+							>
+								Copied to clipboard! 👍
+							</div>
+						)}
+					</span> 
 				</p>
 					<div className='flex flex-col w-full max-w-[640px]'>
 						<form 
