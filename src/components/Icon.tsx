@@ -18,7 +18,7 @@ export default function Icon({ icon, index, card } : Props) {
 					transition-[margin] duration-100 ease-linear cursor-pointer 
 					${!card && (icon.name === 'rust' || icon.name === 'react-router') ? 
 					' dark:bg-gray-800' : ''}
-					${icon.name == 'bubble' || icon.name == 'rust' 
+					${icon.name == 'bubble' || icon.name == 'rust' || icon.name == 'express' 
 						? !card 
 							? 'bg-background dark:bg-gray-600' 
 							: 'bg-border dark:bg-gray-400' 
