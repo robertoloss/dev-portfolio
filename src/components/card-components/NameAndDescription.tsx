@@ -3,7 +3,7 @@ import { Project } from "@/sanity-types"
 
 const components : PortableTextComponents = {
 	block: {
-		normal: ({ children }) => <h1 className="text-lg font-thin leading-7">{ children }</h1>
+		normal: ({ children }) => <h1 className="text-md font-extralight leading-7">{ children }</h1>
 	},
 	marks: {
     link: ({value, children}) => {

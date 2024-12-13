@@ -19,7 +19,7 @@ const components : PortableTextComponents = {
     },
 	},
 	list: {
-		bullet: ({children}) => <ul className="text-lg font-extralight leading-7">{children}</ul>
+		bullet: ({children}) => <ul className="text-lg font-light leading-7">{children}</ul>
 	},
 	listItem: {
 		bullet: ({children}) => <li className="mb-8 md:mb-0">{children}</li>
