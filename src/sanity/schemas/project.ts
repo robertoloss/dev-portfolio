@@ -63,9 +63,13 @@ export const project = {
 				list: [
 					{ title: 'Vite', value: 'vite' },
 					{ title: 'Next.js', value: 'nextjs' },
+					{ title: 'Node.js', value: 'node' },
+					{ title: 'Express.js', value: 'express' },
+					{ title: 'PostgreSQL', value: 'postgresql' },
 					{ title: 'Tailwind', value: 'tailwind' },
 					{ title: 'React Router', value: 'react-router'},
 					{ title: 'Typescript', value: 'typescript' },
+					{ title: 'Javascript', value: 'javascript' },
 					{ title: 'Sanity', value: 'sanity' },
 					{ title: 'Supabase', value: 'supabase' },
 				]
