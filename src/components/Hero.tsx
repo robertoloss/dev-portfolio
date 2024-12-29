@@ -32,6 +32,8 @@ type Props = {
 export default function Hero({ websiteInfo } : Props) {
 	const icons = websiteInfo?.icons as unknown as any[]
 
+  const excludedIcons = ['rust','python','cpp','wasm','html5']
+
 	return (
 		<div className="flex flex-col min-h-screen md:min-h-0 gap-y-10">
 			<div className="flex flex-col">
@@ -45,7 +47,7 @@ export default function Hero({ websiteInfo } : Props) {
 			</div>
 			<div className="flex py-2 flex-row gap-x-1 md:gap-x-2 group -ml-2 :md:ml-0 overflow-scroll sm:overflow-auto">
 				{websiteInfo && icons
-					.filter(i=>(i.name!='rust' && i.name!='python' && i.name != 'cpp'))
+					.filter(i=>(!excludedIcons.includes(i.name)))
 					.map((icon, index) => 
 						<Icon icon={icon} index={index} /> 
 				)}
