@@ -7,6 +7,7 @@ import Project from "./pages/Project"
 import Contact from "./pages/Contact"
 import { getWebsiteInfo, getAllProjects } from "./sanity/client"
 import { getCV } from "./sanity/client"
+import GoogleAnalytics from "./GoogleAnalytics"
 
 function App() {
 
@@ -55,10 +56,13 @@ function App() {
 	const router = createBrowserRouter(routerArray as RouteObject[])
 
   return (
+    <>
+      <GoogleAnalytics/>
 			<RouterProvider 
 				router={router} 
 				fallbackElement={<div></div>}
 			/>
+    </>
   )
 }
 
