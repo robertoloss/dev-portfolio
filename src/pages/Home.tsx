@@ -40,7 +40,9 @@ export default function Home() {
   return (
 		<div className="min-h-screen">
 			<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
-        <CursorFollower/>
+        <div className="hidden sm:block">
+          <CursorFollower/>
+        </div>
 				<div className="flex flex-col  w-full pb-8 md:py-8 md:pr-6 gap-y-8 ">
 					<Hero websiteInfo={websiteInfo}/>
 						{sections.map((section, i)=>
