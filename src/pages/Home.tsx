@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import AnimationWrapper from "@/components/AnimationWrapper";
 import { usePage } from "@/utils/usePage";
+import CursorFollower from "@/components/CursorFollower";
 
 
 export default function Home() {
@@ -39,6 +40,7 @@ export default function Home() {
   return (
 		<div className="min-h-screen">
 			<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
+        <CursorFollower/>
 				<div className="flex flex-col  w-full pb-8 md:py-8 md:pr-6 gap-y-8 ">
 					<Hero websiteInfo={websiteInfo}/>
 						{sections.map((section, i)=>
