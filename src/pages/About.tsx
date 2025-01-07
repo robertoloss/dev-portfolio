@@ -4,6 +4,7 @@ import AnimationWrapper from "@/components/AnimationWrapper"
 import { useLoaderData, useLocation } from "react-router-dom"
 import { usePage } from "@/utils/usePage"
 import { Website, Cv } from "@/sanity-types"
+import CursorFollower from "@/components/CursorFollower"
 
 const description : PortableTextComponents = {
   block: {
@@ -51,6 +52,7 @@ export default function About() {
   return (
 		<div className="min-h-screen">
 			<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
+          <CursorFollower/>
 				<div className="flex flex-col gap-y-6" >
 					<div className="flex flex-col w-full pb-8 md:py-8 md:pr-6 gap-y-8">
 						<div className="flex flex-col w-full max-w-[1000px] gap-y-4">

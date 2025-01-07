@@ -4,6 +4,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { usePage } from '@/utils/usePage';
+import CursorFollower from '@/components/CursorFollower';
 
 export default function Contact() {
   const form = useRef<HTMLFormElement>(null);
@@ -95,6 +96,7 @@ export default function Contact() {
 
   return (<div className='min-h-screen'>
 		<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
+      <CursorFollower/>
 			<div className='flex flex-col w-full items-center md:items-start py-8 gap-y-10 
 				sm:py-8 sm:gap-y-10 min-h-[calc(100vh-290px)]'>
 				<h1 className="text-4xl font-thin"
