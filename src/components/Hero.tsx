@@ -1,7 +1,6 @@
 import LinkedInGithub from "./card-components/LinkedInGitHub"
 import { Website } from "@/sanity-types"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
-import Icon from "./Icon"
 import IconRow from "./IconRow"
 import { useState } from "react"
 
