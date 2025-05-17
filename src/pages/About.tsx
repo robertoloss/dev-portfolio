@@ -84,7 +84,6 @@ export default function About() {
                   "mb-10 ms-4 border-2 bg-muted px-6 py-4 rounded-xl max-w-[1000px]",
                   "transition-all",
                   "hover:border-foreground hover:bg-background",
-                  "hover:mr-4",
                   "group"
                 )}
               >
