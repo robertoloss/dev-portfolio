@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { usePage } from '@/utils/usePage';
 import CursorFollower from '@/components/CursorFollower';
+import { cn } from '@/lib/utils';
 
 export default function Contact() {
   const form = useRef<HTMLFormElement>(null);
@@ -14,9 +15,9 @@ export default function Contact() {
 	const captchaRef = useRef<ReCAPTCHA | null>(null)
 	const [copied, setCopied] = useState(false)
 	const [submitted, setSubmitted] = useState(false)
-	const [nameFocus, setNameFocus] = useState(false)
-	const [emailFocus, setEmailFocus] = useState(false)
-	const [messageFocus, setMessageFocus] = useState(false)
+	const [_nameFocus, setNameFocus] = useState(false)
+	const [_emailFocus, setEmailFocus] = useState(false)
+	const [_messageFocus, setMessageFocus] = useState(false)
 	const [showReCaptcha, setShowReCaptcha] = useState(false)
 	const { pageOpen, setPageOpen, mobile } = usePage()
 	const location = useLocation()
@@ -58,21 +59,11 @@ export default function Contact() {
 		setMessageFocus(true)
 	}
 
-	function labelClassName(input: "name" | "email" | "message") : string {
-		const common = ' flex absolute top-[14px] z-10 ml-[14px] font-normal transition-all ease-out duration-100 dark:text-muted-foreground '
-		const onFocus = ' top-[3px] left-[4px] dark:text-muted-foreground light:text-foreground text-xs ' 
-		const onBlur = 'text-muted-foreground mt-1'
-		const specific = {
-			name: nameFocus || nameInputRef.current?.value  ? onFocus : onBlur, 
-			email: emailFocus || emailInputRef.current?.value  ? onFocus : onBlur,
-			message: messageFocus || messageInputRef.current?.value  ? onFocus : onBlur,
-		}
-		return  specific[input] + common 
-	}
-
 	function inputClassName(input: "nameOrEmail" | "message") : string {
-		const common = `flex flex-col items-center p-4 rounded-sm border-2 border-border dark:bg-muted
-				focus:outline-none focus:ring-0 focus:border-primary  focus:border-2 dark:text-primary`
+		const common = `
+      flex flex-col items-center px-4 py-6 rounded-sm border-2 border-border dark:bg-muted
+			focus:outline-none focus:ring-0 focus:border-primary  focus:border-2 dark:text-primary
+    `
 		const specific = {
 			nameOrEmail: ' h-13 ',
 			message:  ' h-20 ',
@@ -93,6 +84,13 @@ export default function Contact() {
 			}
 		}
 	}
+
+  const labelTailwind = [
+    'flex absolute top-[26px] z-10 ml-[18px] font-normal', 
+    "transition-all ease-out duration-100 dark:text-muted-foreground",
+    "peer-focus:top-[10px] peer-focus:text-xs", 
+  ]
+  const inputFilledTailwind = "top-[10px] text-xs"
 
   return (<div className='min-h-screen'>
 		<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
@@ -116,6 +114,7 @@ export default function Contact() {
 							</div>
 						)}
 					</span> 
+          &nbsp;(click to copy)
 				</p>
 					<div className='flex flex-col w-full max-w-[640px]'>
 						<form 
@@ -124,52 +123,67 @@ export default function Contact() {
 							className='flex flex-col w-full gap-y-4 dark:text-background'
 						>
 							<div className='flex relative flex-col'>
-								<label 
-									className={labelClassName("name")}
-									onClick={nameLabelHandler}
-								> 
-									Name 
-								</label>
 								<input 
 									ref={nameInputRef}
 									type="text"
 									name="user_name"
-									className={inputClassName("nameOrEmail")}
+									className={'peer' + inputClassName("nameOrEmail")}
 									onFocus={()=>setNameFocus(true)}
 									onBlur={()=>setNameFocus(false)}
 								/>
+								<label 
+                  className={cn(
+                    ...labelTailwind,
+                    {
+                      [inputFilledTailwind]: nameInputRef.current?.value
+                    }
+                  )}
+									onClick={nameLabelHandler}
+								> 
+									Name 
+								</label>
 							</div>
 							<div className='flex relative flex-col'>
-								<label 
-									className={labelClassName("email")}
-									onClick={emailLabelHandler}
-								> 
-									Email 
-								</label>
 								<input 
 									ref={emailInputRef}
 									type="email"
 									name="user_email"
-									className={inputClassName("nameOrEmail")}
+									className={'peer' + inputClassName("nameOrEmail")}
 									onFocus={()=>setEmailFocus(true)}
 									onBlur={()=>setEmailFocus(false)}
 								/>
+								<label 
+                  className={cn(
+                    ...labelTailwind,
+                    {
+                      [inputFilledTailwind]: emailInputRef.current?.value
+                    }
+                  )}
+									onClick={emailLabelHandler}
+								> 
+									Email 
+								</label>
 							</div>
 
 							<div className='flex relative flex-col'>
+								<textarea 
+									ref={messageInputRef}
+									name="message"
+									className={"peer" + inputClassName("message")}
+									onFocus={()=>setMessageFocus(true)}
+									onBlur={()=>setMessageFocus(false)}
+								/>
 								<label 
-									className={labelClassName("message")}
+                  className={cn(
+                    ...labelTailwind,
+                    {
+                      [inputFilledTailwind]: messageInputRef.current?.value
+                    }
+                  )}
 									onClick={messageLabelHandler}
 								> 
 									Message 
 								</label>
-								<textarea 
-									ref={messageInputRef}
-									name="message"
-									className={inputClassName("message")}
-									onFocus={()=>setMessageFocus(true)}
-									onBlur={()=>setMessageFocus(false)}
-								/>
 							</div>
 						<div className='h-12 flex flex-col items-center justify-center'>
 							{(showReCaptcha && !submitted) && 

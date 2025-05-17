@@ -5,6 +5,7 @@ import { useLoaderData, useLocation } from "react-router-dom"
 import { usePage } from "@/utils/usePage"
 import { Website, Cv } from "@/sanity-types"
 import CursorFollower from "@/components/CursorFollower"
+import { cn } from "@/lib/utils"
 
 const description : PortableTextComponents = {
   block: {
@@ -56,18 +57,46 @@ export default function About() {
 				<div className="flex flex-col gap-y-6" >
 					<div className="flex flex-col w-full pb-8 md:py-8 md:pr-6 gap-y-8">
 						<div className="flex flex-col w-full max-w-[1000px] gap-y-4">
-							<h1 className="text-4xl font-thin"
-									style={{fontFamily: "Fira Code"}}> About me </h1>
-							<PortableText components={components} value={website.about_description!}/>
+							<h1 
+                className="text-4xl font-thin"
+                style={{fontFamily: "Fira Code"}}
+              > 
+                About me 
+              </h1>
+							<PortableText 
+                components={components} 
+                value={website.about_description!}
+              />
 						</div>
 					</div>
-					<ol className="relative border-s border-muted-foreground"> 
+					<ol 
+            className={cn(
+              "relative border-s border-muted-foreground"
+            )}
+          > 
 						{cv.cvEntries!
 						.sort((entryA: any, entryB: any) => entryA!.order! < entryB!.order! ? 1 : -1)
 						.map((entry: any, index) => 
-							<li key={index} className="mb-10 ms-4 bg-muted px-6 py-4 rounded-xl max-w-[1000px]">
-								<div className="absolute w-3 h-3 rounded-full mt-1.5 -start-[6.5px]
-									border border-white border-muted-foreground bg-muted-foreground"/>
+							<li 
+                key={index} 
+                className={cn(
+                  "flex flex-col",
+                  "mb-10 ms-4 border-2 bg-muted px-6 py-4 rounded-xl max-w-[1000px]",
+                  "transition-all",
+                  "hover:border-foreground hover:bg-background",
+                  "hover:mr-4",
+                  "group"
+                )}
+              >
+								<div 
+                  className={cn(
+                    "absolute w-3 h-3 rounded-full mt-1.5 -start-[6.5px]",
+                    "border border-muted-foreground bg-muted-foreground",
+                    "transition-all",
+                    "group-hover:w-8 group-hover:h-3 group-hover:-start-[26.5px]",
+                    "group-hover:bg-foreground group-hover:border-foreground"
+                  )}
+                />
 								<time className="mb-1 text-sm font-normal leading-none  text-muted-foreground">
 									{entry.date}	
 								</time>
@@ -77,7 +106,10 @@ export default function About() {
 								<h2 className="text-base font-normal ">
 									{entry.subtitle}	
 								</h2>
-								<PortableText components={description} value={entry.description!}/> 
+								<PortableText 
+                  components={description} 
+                  value={entry.description!}
+                /> 
 							</li>
 						)}
 					</ol>	
