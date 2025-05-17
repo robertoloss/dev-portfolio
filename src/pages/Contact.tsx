@@ -114,7 +114,6 @@ export default function Contact() {
 							</div>
 						)}
 					</span> 
-          &nbsp;(click to copy)
 				</p>
 					<div className='flex flex-col w-full max-w-[640px]'>
 						<form 
