@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 
 const description : PortableTextComponents = {
   block: {
-    normal: ({children}) => <h1 className="text-base font-extralight leading-6 text-muted-foreground">{children}</h1>,
+    normal: ({children}) => <h1 className="text-base font-light leading-6 text-foreground dark:text-muted-foreground">{children}</h1>,
   },
 	marks: {
     em: ({children}) => <p className="text-lg font-normal text-destructive leading-6">{children}</p>,
