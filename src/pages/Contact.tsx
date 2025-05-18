@@ -6,21 +6,30 @@ import { useLocation } from 'react-router-dom';
 import { usePage } from '@/utils/usePage';
 import CursorFollower from '@/components/CursorFollower';
 import { cn } from '@/lib/utils';
+import z from 'zod';
 
 export default function Contact() {
+
   const form = useRef<HTMLFormElement>(null);
 	const nameInputRef = useRef<HTMLInputElement>(null)
 	const emailInputRef = useRef<HTMLInputElement>(null)
 	const messageInputRef = useRef<HTMLTextAreaElement>(null)
 	const captchaRef = useRef<ReCAPTCHA | null>(null)
+
 	const [copied, setCopied] = useState(false)
 	const [submitted, setSubmitted] = useState(false)
 	const [_nameFocus, setNameFocus] = useState(false)
 	const [_emailFocus, setEmailFocus] = useState(false)
 	const [_messageFocus, setMessageFocus] = useState(false)
 	const [showReCaptcha, setShowReCaptcha] = useState(false)
+  const [error, setError] = useState(false)
+
 	const { pageOpen, setPageOpen, mobile } = usePage()
 	const location = useLocation()
+
+  const emailSchema = z.string().email().nonempty()
+  const nameSchema = z.string().nonempty()
+  const messageSchema = z.string().nonempty()
 	
 	useEffect(()=>{
 		setPageOpen(true)
@@ -43,7 +52,15 @@ export default function Contact() {
   };
 
   function buttonHandler() {
-		setShowReCaptcha(true)
+    try {
+      emailSchema.parse(emailInputRef.current?.value) ||
+      nameSchema.parse(nameInputRef.current?.value) ||
+      messageSchema.parse(messageInputRef.current?.value)
+      setShowReCaptcha(true)
+    } catch(error) {
+      setError(true)
+      return
+    }
 	}
 
 	function nameLabelHandler() {
@@ -61,15 +78,17 @@ export default function Contact() {
 
 	function inputClassName(input: "nameOrEmail" | "message") : string {
 		const common = `
-      flex flex-col items-center px-4 py-6 rounded-sm border-2 border-border dark:bg-muted
+      flex flex-col items-center px-4 pt-6 pb-2 rounded border-2 border-border dark:bg-muted
 			focus:outline-none focus:ring-0 focus:border-primary  focus:border-2 dark:text-primary
     `
 		const specific = {
 			nameOrEmail: ' h-13 ',
-			message:  ' h-20 ',
+			message:  ' h-13 ',
 		}
 		return specific[input] + common
 	}
+
+  console.log(error)
 
 	window.scrollTo(0,0)
 	async function copyToClipboard() {
@@ -86,11 +105,21 @@ export default function Contact() {
 	}
 
   const labelTailwind = [
-    'flex absolute top-[26px] z-10 ml-[18px] font-normal', 
+    'flex absolute top-[20px] z-10 ml-[18px] font-normal', 
     "transition-all ease-out duration-100 dark:text-muted-foreground",
     "peer-focus:top-[10px] peer-focus:text-xs", 
   ]
   const inputFilledTailwind = "top-[10px] text-xs"
+
+
+  function isThisErroring(value: string | undefined, schemaFn: (s: string | undefined) => string) {
+    try {
+      schemaFn(value)
+      return false
+    } catch {
+      return true
+    }
+  }
 
   return (<div className='min-h-screen'>
 		<AnimationWrapper pageOpen={pageOpen} mobile={mobile}>
@@ -126,8 +155,18 @@ export default function Contact() {
 									ref={nameInputRef}
 									type="text"
 									name="user_name"
-									className={'peer' + inputClassName("nameOrEmail")}
-									onFocus={()=>setNameFocus(true)}
+									className={
+                    'peer' + 
+                    inputClassName("nameOrEmail") +
+                    `${error && isThisErroring(nameInputRef.current?.value, nameSchema.parse)
+                      ? "border-destructive focus:border-destructive" 
+                      : ""
+                    }`
+                  }
+									onFocus={()=>{
+                    setError(false)
+                    setNameFocus(true)}
+                  }
 									onBlur={()=>setNameFocus(false)}
 								/>
 								<label 
@@ -147,8 +186,19 @@ export default function Contact() {
 									ref={emailInputRef}
 									type="email"
 									name="user_email"
-									className={'peer' + inputClassName("nameOrEmail")}
-									onFocus={()=>setEmailFocus(true)}
+									className={
+                    'peer' + 
+                    inputClassName("nameOrEmail") +
+                    `${error && isThisErroring(emailInputRef.current?.value, emailSchema.parse)
+                      ? "border-destructive focus:border-destructive" 
+                      : ""
+                    }`
+                  }
+                    
+									onFocus={()=> {
+                    setError(false)
+                    setEmailFocus(true)
+                  }}
 									onBlur={()=>setEmailFocus(false)}
 								/>
 								<label 
@@ -168,8 +218,19 @@ export default function Contact() {
 								<textarea 
 									ref={messageInputRef}
 									name="message"
-									className={"peer" + inputClassName("message")}
-									onFocus={()=>setMessageFocus(true)}
+									className={
+                    "peer" + 
+                    inputClassName("message") +
+                    inputClassName("nameOrEmail") +
+                    `${error && isThisErroring(messageInputRef.current?.value, messageSchema.parse)
+                      ? "border-destructive focus:border-destructive" 
+                      : ""
+                    }`
+                  }
+									onFocus={()=> {
+                    setError(false)
+                    setMessageFocus(true)
+                  }}
 									onBlur={()=>setMessageFocus(false)}
 								/>
 								<label 
