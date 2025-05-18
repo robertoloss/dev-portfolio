@@ -35,7 +35,6 @@ export default function Hero({ websiteInfo } : Props) {
 	const icons = websiteInfo?.icons as unknown as any[]
   const excludedIcons = ['python','cpp' ]
   const includedIcons = icons.filter(i=>(!excludedIcons.includes(i.name)))
-  console.log(isHovered)
 
 	return (
 		<div className="flex flex-col min-h-screen md:min-h-0 gap-y-10">

@@ -1,9 +1,11 @@
+import useMediaQuery from '@/utils/useMediaQuery'
 import { useState, useEffect } from 'react'
 
  export default function CursorFollower() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [dotPosition, setDotPosition] = useState({ x: 0, y: 0 })
   const [circlePosition, setCirclePosition] = useState({ x: 0, y: 0 })
+  const isMobile = useMediaQuery() < 768
 
   useEffect(() => {
     const updateMousePosition = (ev: MouseEvent) => {
@@ -41,28 +43,32 @@ import { useState, useEffect } from 'react'
   const circleSize = 32
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-50">
-      <div
-        className="absolute rounded-full bg-foreground"
-        style={{
-          width: `${dotSize}px`,
-          height: `${dotSize}px`,
-          left: `${dotPosition.x}px`,
-          top: `${dotPosition.y}px`,
-          transform: `translate(-50%, -50%)`,
-        }}
-      />
-      <div
-        className="absolute rounded-full bg-foreground opacity-15"
-        style={{
-          width: `${circleSize}px`,
-          height: `${circleSize}px`,
-          left: `${circlePosition.x}px`,
-          top: `${circlePosition.y}px`,
-          transform: `translate(-50%, -50%)`,
-        }}
-      />
-    </div>
+    <>
+      {!isMobile && 
+        <div className="pointer-events-none fixed inset-0 z-50">
+          <div
+            className="absolute rounded-full bg-foreground"
+            style={{
+              width: `${dotSize}px`,
+              height: `${dotSize}px`,
+              left: `${dotPosition.x}px`,
+              top: `${dotPosition.y}px`,
+              transform: `translate(-50%, -50%)`,
+            }}
+          />
+          <div
+            className="absolute rounded-full bg-foreground opacity-15"
+            style={{
+              width: `${circleSize}px`,
+              height: `${circleSize}px`,
+              left: `${circlePosition.x}px`,
+              top: `${circlePosition.y}px`,
+              transform: `translate(-50%, -50%)`,
+            }}
+          />
+        </div>
+      }
+    </>
   )
 }
 
