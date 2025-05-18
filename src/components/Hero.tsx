@@ -51,14 +51,18 @@ export default function Hero({ websiteInfo } : Props) {
       {websiteInfo && 
         <div 
           className="
-            flex flex-row overflow-hidden w-full max-w-[1200px] gap-x-1 md:gap-x-2
+            flex flex-row z-0 w-full max-w-[1200px] gap-x-1 md:gap-x-2
           "
           onMouseEnter={()=>setIsHovered(true)}
           onMouseLeave={()=>setIsHovered(false)}
         >
-          <IconRow includedIcons={includedIcons} isHovered={isHovered}/>
-          <IconRow includedIcons={includedIcons} isHovered={isHovered}/>
-          <IconRow includedIcons={includedIcons} isHovered={isHovered}/>
+          <div 
+            className="flex flex-row z-0 overflow-x-hidden w-full max-w-[1200px] gap-x-1 md:gap-x-2"
+          >
+            <IconRow includedIcons={includedIcons} isHovered={isHovered}/>
+            <IconRow includedIcons={includedIcons} isHovered={isHovered}/>
+            <IconRow includedIcons={includedIcons} isHovered={isHovered}/>
+          </div>
         </div>
       }
 			<div className="max-w-[1200px]">
