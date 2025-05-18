@@ -53,9 +53,10 @@ export default function Contact() {
 
   function buttonHandler() {
     try {
-      emailSchema.parse(emailInputRef.current?.value) ||
-      nameSchema.parse(nameInputRef.current?.value) ||
-      messageSchema.parse(messageInputRef.current?.value)
+      emailSchema.parse(emailInputRef.current!.value) ||
+      nameSchema.parse(nameInputRef.current!.value) ||
+      messageSchema.parse(messageInputRef.current!.value)
+      console.log(nameSchema.parse(nameInputRef.current!.value))
       setShowReCaptcha(true)
     } catch(error) {
       setError(true)
