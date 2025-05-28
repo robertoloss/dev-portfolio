@@ -29,7 +29,7 @@ export default function ModalForPicture({ children, carousel, pic } : Props) {
 			<DialogContent 
 				className="
 					flex flex-col flex-1 py-12 px-4 sm:p-12 w-full sm:max-w-[1200px] h-full max-h-[80%] 
-					bg-background border border-muted-foreground justify-center items-center rounded-xl overflow-hidden"
+					bg-transparent shadow-none border-none justify-center items-center rounded-xl overflow-hidden"
 				>
 				<DialogHeader>
 				</DialogHeader>
@@ -37,9 +37,9 @@ export default function ModalForPicture({ children, carousel, pic } : Props) {
 					align: "start",
 					loop: true,
 				}}>
-					<CarouselPrevious className="mx-4 hidden sm:flex sm:flex-col sm:items-center sm:justify-center"/>
+					<CarouselPrevious className="hidden sm:flex sm:flex-col sm:items-center sm:justify-center"/>
 						<div className={`${carousel.length > 0 ? 'bg-none' : 'bg-gray-300 animate-pulse'}`}>
-						<CarouselContent className="">
+						<CarouselContent className="flex flex-row w-fit">
 							{carousel[carousel.length - 1] && carousel.map((pic: any, index: number)=>
 								<CarouselItem 
 									className="flex flex-col px-6 relative justify-center items-center cursor-pointer" 
