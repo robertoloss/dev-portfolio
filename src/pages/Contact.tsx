@@ -21,6 +21,7 @@ export default function Contact() {
 	const [_nameFocus, setNameFocus] = useState(false)
 	const [_emailFocus, setEmailFocus] = useState(false)
 	const [_messageFocus, setMessageFocus] = useState(false)
+  const [messageValue, setMessageValue] = useState<string | undefined>("")
 	const [showReCaptcha, setShowReCaptcha] = useState(false)
   const [error, setError] = useState(false)
 
@@ -35,6 +36,13 @@ export default function Contact() {
 		setPageOpen(true)
 	},[setPageOpen,location])
 
+  useEffect(()=>{
+    if (messageInputRef.current) {
+      messageInputRef.current.style.height = 'auto'
+      messageInputRef.current.style.height = `${messageInputRef.current.scrollHeight}px`
+    }
+  },[messageValue, _messageFocus])
+
   const recaptchaOnChange = () => {
     emailjs.sendForm(	process.env.EMAILJS_SERVICE_ID!,
 											process.env.EMAILJS_TEMPLATE_ID!, 
@@ -46,6 +54,10 @@ export default function Contact() {
 				console.log(error.text);
 		});
 		setSubmitted(true)
+    setTimeout(() => {
+      setShowReCaptcha(false)
+      setSubmitted(false)
+    },3000)
 		if (nameInputRef.current) nameInputRef.current.value = ""
 		if (emailInputRef.current) emailInputRef.current.value = ""
 		if (messageInputRef.current) messageInputRef.current.value = ""
@@ -53,8 +65,8 @@ export default function Contact() {
 
   function buttonHandler() {
     try {
-      emailSchema.parse(emailInputRef.current!.value) ||
-      nameSchema.parse(nameInputRef.current!.value) ||
+      emailSchema.parse(emailInputRef.current!.value)
+      nameSchema.parse(nameInputRef.current!.value)
       messageSchema.parse(messageInputRef.current!.value)
       console.log(nameSchema.parse(nameInputRef.current!.value))
       setShowReCaptcha(true)
@@ -88,8 +100,6 @@ export default function Contact() {
 		}
 		return specific[input] + common
 	}
-
-  console.log(error)
 
 	window.scrollTo(0,0)
 	async function copyToClipboard() {
@@ -172,6 +182,7 @@ export default function Contact() {
 								/>
 								<label 
                   className={cn(
+                    "pointer-events-none",
                     ...labelTailwind,
                     {
                       [inputFilledTailwind]: nameInputRef.current?.value
@@ -204,6 +215,7 @@ export default function Contact() {
 								/>
 								<label 
                   className={cn(
+                    "pointer-events-none",
                     ...labelTailwind,
                     {
                       [inputFilledTailwind]: emailInputRef.current?.value
@@ -218,6 +230,8 @@ export default function Contact() {
 							<div className='flex relative flex-col'>
 								<textarea 
 									ref={messageInputRef}
+                  value={messageValue}
+                  onChange={(e)=>setMessageValue(e.target.value)}
 									name="message"
 									className={
                     "peer" + 
@@ -236,6 +250,7 @@ export default function Contact() {
 								/>
 								<label 
                   className={cn(
+                    "pointer-events-none",
                     ...labelTailwind,
                     {
                       [inputFilledTailwind]: messageInputRef.current?.value
@@ -275,6 +290,16 @@ export default function Contact() {
 									onChange={recaptchaOnChange}
 									className='self-center -mt-[74px] z-20'
 								/>
+								<button
+									className="py-2 mt-4 px-2  bg-background border-foreground border
+										hover:bg-muted hover:border-foreground hover:border 
+										 transition-[background-color] w-[96px]
+										self-center rounded-[4px] text-foreground font-light cursor-pointer hover:text-foreground
+										"
+									onClick={()=>setShowReCaptcha(false)}
+								>
+									Cancel 
+								</button>
 							</div>
 						}
 					</form>
