@@ -43,7 +43,7 @@ export default function WebAndGit({ project } : Props) {
             </DialogTrigger>
             <DialogContent
               className={cn(
-                "w-full sm:max-w-[80%] xl:max-w-[50%] h-screen overflow-auto"
+                "w-full sm:max-w-[80%] xl:max-w-[50%] max-h-[80%] overflow-auto"
               )}
             >
               <DialogHeader
@@ -53,7 +53,7 @@ export default function WebAndGit({ project } : Props) {
               >
                 <DialogTitle className="mb-4">
                 </DialogTitle>
-                <div className="flex flex-col gap-y-2">
+                <div className="flex flex-col gap-y-2 text-left">
                   <PortableText components={components} value={project.popupCopy!} />
                 </div>
               </DialogHeader>
