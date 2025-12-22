@@ -2,11 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-.main::-webkit-scrollbar-track {
-	background: red;
+/* Scrollbar styles for WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-.main::-webkit-scrollbar-thumb {
-	background: blue;
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--border));
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: hsl(var(--secondary));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--foreground));
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground)) hsl(var(--border));
+}
+
+.dark * {
+  scrollbar-color: hsl(var(--muted-foreground)) hsl(var(--secondary));
 }
 
 @font-face {
