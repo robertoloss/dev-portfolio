@@ -43,7 +43,7 @@ export default function WebAndGit({ project } : Props) {
             </DialogTrigger>
             <DialogContent
               className={cn(
-                "w-full sm:max-w-[80%] xl:max-w-[50%]"
+                "w-full sm:max-w-[80%] xl:max-w-[50%] h-screen overflow-auto"
               )}
             >
               <DialogHeader
