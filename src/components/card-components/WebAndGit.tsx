@@ -33,9 +33,13 @@ export default function WebAndGit({ project } : Props) {
     className: "rounded-[4px] min-w-[80px]"
   }
 
+
 	return (
 		<div className="flex flex-row gap-4 w-fit">
-			{(true || project.website) && ( 
+      {!project.website &&
+        <div className="min-h-10"/>
+      }
+			{project.website && ( 
         project.popup 
         ? <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>
