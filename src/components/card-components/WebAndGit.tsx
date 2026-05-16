@@ -6,6 +6,7 @@ import { Project } from "@/sanity-types"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { InfoIcon } from "lucide-react"
 
 type Props = {
 	project: Project
@@ -45,7 +46,9 @@ export default function WebAndGit({ project } : Props) {
       {project.popup && 
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger>
-            <WGIcon type='web' link=""/>
+            <WGIcon 
+              type={project.website ? "web" : "info"}
+            /> 
           </DialogTrigger>
           <DialogContent
             className={cn(
