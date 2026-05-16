@@ -36,44 +36,47 @@ export default function WebAndGit({ project } : Props) {
 
 	return (
 		<div className="flex flex-row gap-4 w-fit">
-      {!project.website &&
+      {(!project.website && !project.popup) &&
         <div className="min-h-10"/>
       }
-			{project.website && ( 
-        project.popup 
-        ? <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger>
-              <WGIcon type='web' link=""/>
-            </DialogTrigger>
-            <DialogContent
+			{(project.website && !project.popup) &&
+        <WGIcon type='web' link={project.website} />
+      }
+      {project.popup && 
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger>
+            <WGIcon type='web' link=""/>
+          </DialogTrigger>
+          <DialogContent
+            className={cn(
+              "w-full sm:max-w-[80%] xl:max-w-[50%] max-h-[80%] overflow-auto"
+            )}
+          >
+            <DialogHeader
               className={cn(
-                "w-full sm:max-w-[80%] xl:max-w-[50%] max-h-[80%] overflow-auto"
+                "p-4"
               )}
             >
-              <DialogHeader
-                className={cn(
-                  "p-4"
-                )}
+              <DialogTitle className="mb-4">
+              </DialogTitle>
+              <div className="flex flex-col gap-y-2 text-left">
+                <PortableText components={components} value={project.popupCopy!} />
+              </div>
+            </DialogHeader>
+            <DialogFooter
+              className={cn(
+                "flex flex-row sm:justify-center justify-center",
+                "gap-x-4"
+              )}
+            >
+              <Button
+                onClick={()=>setOpen(false)}
+                variant="outline"
+                { ...buttonProps }
               >
-                <DialogTitle className="mb-4">
-                </DialogTitle>
-                <div className="flex flex-col gap-y-2 text-left">
-                  <PortableText components={components} value={project.popupCopy!} />
-                </div>
-              </DialogHeader>
-              <DialogFooter
-                className={cn(
-                  "flex flex-row sm:justify-center justify-center",
-                  "gap-x-4"
-                )}
-              >
-                <Button
-                  onClick={()=>setOpen(false)}
-                  variant="outline"
-                  { ...buttonProps }
-                >
-                  Cancel
-                </Button>
+                {project.website ? "Cancel" : "Close"}
+              </Button>
+              {project.website &&
                 <Link target="_blank" to={project.website!}>
                   <Button
                     { ...buttonProps }
@@ -81,11 +84,11 @@ export default function WebAndGit({ project } : Props) {
                     Go
                   </Button>
                 </Link>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        : <WGIcon type='web' link={project.website} />
-      )}
+              }
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      }
 			{project.github && <WGIcon type='git' link={project.github} />}
 		</div>
 	) 
