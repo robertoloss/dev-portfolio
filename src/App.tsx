@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter, RouteObject } from "react-router-dom"
+import { RouterProvider, createBrowserRouter, RouteObject, useNavigate, Navigate } from "react-router-dom"
 import Palette from "./pages/Palette"
 import Root from "./pages/Root"
 import About from "./pages/About"
@@ -8,6 +8,7 @@ import Contact from "./pages/Contact"
 import { getWebsiteInfo, getAllProjects } from "./sanity/client"
 import { getCV } from "./sanity/client"
 import GoogleAnalytics from "./GoogleAnalytics"
+import { useEffect } from "react"
 
 function App() {
 
@@ -48,7 +49,11 @@ function App() {
 				{
 					path: '/palette',
 					element: <Palette/>,
-				}
+				},
+        {
+          path: '*',
+          element: <Navigate to="/" replace />,
+        }
 			]
 		}
 	]
