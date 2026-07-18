@@ -22,11 +22,11 @@ export default function Home() {
 	
 	const sections = [
 		{
-			title: 'Recent Projects',
+			title: 'Professional Projects',
 			name: 'recent'
 		},
 		{
-			title: 'Other Stuff',
+			title: 'Personal projects',
 			name: 'other',
 			description: 'Side projects, studies, experiments...'
 		},

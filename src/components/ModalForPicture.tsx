@@ -7,6 +7,7 @@ import {
 import { urlFor } from "@/sanity/client"
 import { CarouselPrevious, CarouselNext, Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 type Props = {
 	children: React.ReactNode
@@ -15,6 +16,7 @@ type Props = {
 }
 export default function ModalForPicture({ children, carousel, pic } : Props) {
   const [open, setOpen] = useState(false)
+  const [imgClicked, setImgClicked] = useState(false)
 
 	const indexOfPic = carousel.indexOf(pic)
 	let i = 0;
@@ -35,6 +37,7 @@ export default function ModalForPicture({ children, carousel, pic } : Props) {
 			<DialogContent 
         onClick={()=>setOpen(false)}
 				className="
+          cursor-default
 					flex flex-col flex-1 py-12 px-4 sm:p-12 w-full sm:max-w-[1200px] h-full max-h-[80%] 
 					bg-transparent shadow-none border-none justify-center items-center rounded-xl overflow-hidden"
       >
@@ -54,10 +57,18 @@ export default function ModalForPicture({ children, carousel, pic } : Props) {
 									className="flex flex-col px-6 relative justify-center items-center cursor-pointer" 
 									key={index}
 								>
-									<div className="flex flex-col items-center w-full  sm:max-w-[100%] max-h-[320px] sm:max-h-[600px] z-20">
+									<div className={cn(
+                    "flex flex-col items-center w-full  sm:max-w-[100%] max-h-[320px] sm:max-h-[600px] z-20",
+                    "cursor-default"
+                  )}>
 										<img 
+                      onMouseDown={()=>setImgClicked(true)}
+                      onMouseUp={()=>setImgClicked(false)}
                       onClick={(e)=>e.stopPropagation()}
-											className="h-full w-fit object-contain"
+											className={cn("h-full w-fit object-contain", {
+                        "cursor-grab": !imgClicked,
+                        "cursor-grabbing": imgClicked,
+                      })}
 											src={urlFor(pic?.image)?.width(1200).url()} 
 											key={index}
 										/>
