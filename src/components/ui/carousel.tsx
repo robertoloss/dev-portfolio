@@ -22,8 +22,8 @@ type CarouselProps = {
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0]
   api: ReturnType<typeof useEmblaCarousel>[1]
-  scrollPrev: () => void
-  scrollNext: () => void
+  scrollPrev: (e: React.MouseEvent) => void
+  scrollNext: (e: React.MouseEvent) => void
   canScrollPrev: boolean
   canScrollNext: boolean
 } & CarouselProps
@@ -75,11 +75,13 @@ const Carousel = React.forwardRef<
       setCanScrollNext(api.canScrollNext())
     }, [])
 
-    const scrollPrev = React.useCallback(() => {
+    const scrollPrev = React.useCallback((e?:React.MouseEvent) => {
+      if (e) e.stopPropagation()
       api?.scrollPrev()
     }, [api])
 
-    const scrollNext = React.useCallback(() => {
+    const scrollNext = React.useCallback((e?: React.MouseEvent) => {
+      if (e) e.stopPropagation()
       api?.scrollNext()
     }, [api])
 
@@ -211,7 +213,7 @@ const CarouselPrevious = React.forwardRef<
         className
       )}
       disabled={!canScrollPrev}
-      onClick={scrollPrev}
+      onClick={(e)=>scrollPrev(e)}
       {...props}
     >
       <ArrowLeft className="h-4 w-4" />
@@ -240,7 +242,7 @@ const CarouselNext = React.forwardRef<
         className
       )}
       disabled={!canScrollNext}
-      onClick={scrollNext}
+      onClick={(e) => scrollNext(e)}
       {...props}
     >
       <ArrowRight className="h-4 w-4" />
