@@ -7,6 +7,9 @@ import { useState, useEffect, useRef } from "react";
 import { usePage } from "@/utils/usePage";
 import useMediaQuery from "@/utils/useMediaQuery";
 import { useTheme } from "@/utils/useTheme";
+import Particles from "@/components/Particles";
+import DotField from "@/components/DotField";
+import LiquidEther from "@/components/LiquidEther";
 
 export default function Root() {
 	const [close, setClose] = useState(false)
@@ -58,17 +61,41 @@ export default function Root() {
 			<Header drawer={drawer} drawerHandler={drawerHandler} shadow={shadow}/>
 			<div className={`flex p-0 
 				md:grid ${!close ? 'sm:grid-cols-[240px_auto]' : 'md:grid-cols-[16px_auto]'} 
-				w-full h-full transition-all duration-500 ease-in-out `}>
+				w-full h-full transition-all duration-500 ease-in-out `
+      }>
 				<div className="w-full min-w-4 h-full col-span-1 hidden md:block">
 					<Sidebar close={close} closeHandler={closeHandler}/>
 				</div>
 				<div
 					ref={main}
-					className="flex flex-col relative w-full h-screen col-span-1 overflow-y-auto px-8"
+					className="flex flex-col relative w-full h-screen col-span-1 overflow-y-auto px-8 overflow-x-hidden"
 					onScroll={scroll}
 				>
-					<div className="flex flex-col  w-full min-h-16 md:min-h-0" />
-					<Outlet/>
+          <div
+            className="pointer-events-none sticky top-0 z-0 h-screen w-[150%] shrink-0 -ml-10"
+          >
+         <LiquidEther
+            colors={[ '#ffffff', '#ffffff', '#ffffff' ]}
+            mouseForce={15}
+            cursorSize={50}
+            isViscous
+            viscous={30}
+            iterationsViscous={5}
+            iterationsPoisson={1}
+            resolution={0.5}
+            isBounce
+            autoDemo
+            autoSpeed={0.9}
+            autoIntensity={0.8}
+            takeoverDuration={0.25}
+            autoResumeDelay={3000}
+            autoRampDuration={0.6}
+        />
+          </div>
+          <div className="relative z-10 -mt-[100vh]">
+            <div className="flex flex-col  w-full min-h-16 md:min-h-0" />
+            <Outlet/>
+          </div>
 				</div>
 			</div>
 		</>
